@@ -1,0 +1,46 @@
+.titleFavoritos{
+    margin-top: 100px;
+}
+
+.titleEmpty{
+    text-align: center;
+    margin-top: 80px;
+    color: #ff5e00;
+}
+
+.titleLine{
+    background-color: #ff5e00;
+    height: 3px;
+    border-radius: 10px;
+    width: 70%;
+}
+
+.rowContainer{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.btnContainer{
+    margin-top: 15px;
+}
+
+.btnFavoritos{
+    border-radius: 15px;
+    border: none;
+    padding: 10px;
+    background-color: #ff5e00;
+    transition: 300ms ease;
+    margin: 0px 5px;
+}
+
+.btnFavoritos:hover{
+    transform: scale(1.05,1.05);
+    color: #ff5e00;
+    background-color: transparent;
+}
+
+.btnFavoritos:focus{
+    color: #ff5e00;
+    background-color: transparent;
+}

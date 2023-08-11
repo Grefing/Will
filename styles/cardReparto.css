@@ -1,0 +1,36 @@
+.actorsContainer{
+    margin: 20px 5px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 20px;
+}
+
+.imgReparto{
+    border-radius: 15px;
+    transition: 300ms ease;
+}
+
+.imgReparto:hover{
+    transform: scale(1.05,1.05);
+}
+
+.actorsContainer:hover .actorName{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.actorName{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: 0.3s;
+    margin: 0;
+}

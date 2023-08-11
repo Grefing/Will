@@ -1,0 +1,11 @@
+.paginador{
+    color: #ff5e00;
+    font-size: 25px;
+    transition: 500ms ease-in;
+}
+
+.paginador:hover {
+    transform: scale(1.1,1.1);
+    cursor: pointer;
+}
+

@@ -1,0 +1,334 @@
+.imgContainer {
+    padding: 0; 
+    overflow: hidden; 
+    display: flex;
+  }
+
+  .imgPeli{
+    opacity: 0.7;
+    width: 100%; 
+    height: 100%; 
+  }
+
+  .title{
+    position: absolute; 
+    top: 50%;
+    font-size: 60px;
+    font-weight: bold;
+    margin-left: 20px;
+    color: black;
+  }
+
+  .description{
+    width: 50%;
+    position: absolute;
+    top: 60%;
+    margin-left: 20px;
+  }
+
+  .date{
+    top: 78%;
+    color: #ff5e00;
+    font-weight: bold;
+    position: absolute;
+    margin-left: 20px;
+  }
+
+  .goBackIcon{
+    top: 10%;
+    margin-left: 15px;
+    position: absolute;
+    font-size: 60px;
+    color: #ff5e00;
+    transition: 200ms ease-in;
+    z-index: 1;
+  }
+
+  .goBackIcon:hover{
+    color: #000;
+    transform: scale(1.05,1.05);
+    cursor: pointer;
+  }
+
+  .trailerTitle{
+    margin-top: 15px;
+    margin-left: 180px;
+    font-size: 50px; 
+  }
+
+  .trailerLine{
+    align-self: center;
+    height: 4px;
+    width: 80%;
+    background-color: #ff5e00;
+    border-radius: 10px;
+  }
+
+
+  .trailerVideo{
+    margin-top: 25px;
+    height: 650px;
+    width: 1000px;
+    
+  }
+
+  .optionsContainer{
+    display: flex;
+    justify-content: end;
+    margin-right: 80px;
+    
+  }
+
+  .likeIcon{
+    top: 20%;
+    right: 10%;
+    position: absolute;
+    font-size: 40px;
+    transition: 300ms ease-in;
+    z-index: 1;
+  }
+
+  .likeIcon:hover{
+    color: #ff5e00;
+    transform: scale(1.05,1.05);
+    cursor: pointer;
+  }
+
+  .watchLaterIcon{
+    top: 20%;
+    position: absolute;
+    font-size: 40px;
+    transition: 300ms ease-in;
+    z-index: 1;
+  }
+
+  .watchLaterIcon:hover{
+    color: #ff5e00;
+    transform: scale(1.05,1.05);
+    cursor: pointer;
+  }
+
+
+
+  @media (max-width: 1200px ){
+    .trailerVideo{
+      width: 700px;
+      height: 500px;
+    }
+
+    .trailerTitle{
+      margin-left: 100px;
+     }
+
+     .title{
+      top: 45%;
+     }
+
+     .description{
+      top: 55%;
+     }
+  }
+
+@media (max-width: 1050px ){
+  .title{
+    top: 35%;
+  }
+
+  .description{
+    top: 45%;
+  }
+}
+
+@media (max-width: 1000px ){
+  .title{
+    top: 27%;
+  }
+
+  .description{
+    top: 37%;
+  }
+}
+
+@media (max-width: 900px ){
+  .title{
+    top: 20%;
+  }
+
+  .description{
+    top: 30%;
+    width: 55%;
+  }
+}
+
+@media (max-width: 800px ){
+  .title{
+    top: 17%;
+  }
+
+  .description{
+    top: 27%;
+    width: 60%;
+  }
+  .trailerTitle{
+    margin-left: 65px;
+  }
+}
+
+  @media (max-width: 700px ){
+    .trailerVideo{
+      width: 500px;
+      height: 300px;
+    }
+
+    .trailerTitle{
+      margin-left: 50px;
+      margin-top: 60px;
+     }
+
+     .description{
+      width: 90%;
+     }
+  }
+
+  @media (max-width: 580px ){
+    .trailerVideo{
+      width: 500px;
+      height: 300px;
+    }
+
+    .trailerTitle{
+      margin-left: 50px;
+      margin-top: 100px;
+     }
+
+     .description{
+      width: 90%;
+     }
+  
+  }
+
+  @media (max-width: 500px ){
+    .trailerVideo{
+      width: 300px;
+      height: 180px;
+    }
+
+    .trailerTitle{
+      margin-left: 30px;
+      margin-top: 180px;
+     }
+
+     .goBackIcon{
+      font-size: 40px;
+     }
+  }
+
+  @media (max-width: 440px ){
+    .trailerVideo{
+      width: 300px;
+      height: 180px;
+    }
+
+    .trailerTitle{
+      margin-left: 30px;
+      margin-top: 200px;
+     }
+
+     .goBackIcon{
+      font-size: 40px;
+     }
+     
+  }
+
+  @media (max-width: 400px ){
+    .title{
+      margin-top: 10px;
+    }
+
+    .description{
+      margin-top: 15px;
+    }
+    .trailerVideo{
+      width: 300px;
+      height: 180px;
+    }
+
+    .trailerTitle{
+      margin-left: 30px;
+      margin-top: 250px;
+     }
+
+     .goBackIcon{
+      font-size: 40px;
+      margin-top: 10px;
+     }
+
+  }
+
+.recTitle{
+  margin-top: 30px;
+  margin-left: 200px;
+}
+
+.recommendations{
+  display: flex;
+  justify-content: center;
+  overflow-x: scroll;
+  margin: 0 150px;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.noRec{
+  margin: 10px 0;
+}
+
+.recommendations::-webkit-scrollbar {
+  height: 10px;
+  border-radius: 15px;
+}
+
+
+.recommendations::-webkit-scrollbar-thumb {
+  background-color:#ff5e00;
+  border-radius: 15px; 
+}
+
+@media(max-width:1300px ){
+  .recommendations{
+    margin: 0 100px;
+    gap: 80px;
+  }
+}
+
+@media(max-width:700px ){
+  .recommendations{
+    margin: 0 40px;
+    gap: 20px;
+  }
+}
+
+.repartoContainer{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.actorsCards{
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.actorsCards::-webkit-scrollbar {
+  height: 10px;
+  border-radius: 15px;
+  background-color: transparent;
+}
+
+.repartoLine{
+    align-self: center;
+    height: 4px;
+    width: 100%;
+    background-color: #ff5e00;
+    border-radius: 10px;
+}

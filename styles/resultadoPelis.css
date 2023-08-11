@@ -1,0 +1,42 @@
+.containerResBus{
+    margin-top: 100px;
+}
+
+.containerResult{
+      display: flex;
+      justify-content: space-between;
+}
+
+.filterContainer{
+    display: flex;
+}
+
+.btnAllMovies{
+    border-radius: 15px;
+    border: none;
+    padding: 10px;
+    background-color: #ff5e00;
+    transition: 300ms ease;
+    margin: 0px 5px;
+}
+
+.btnAllMovies:hover{
+    transform: scale(1.05,1.05);
+    color: #ff5e00;
+    background-color: transparent;
+}
+
+.btnAllMovies:focus{
+    color: #ff5e00;
+    background-color: transparent;
+}
+
+.resultTitle{
+    margin-top: 30px;
+}
+
+.resultLine{
+    background-color: #ff5e00;
+    height: 3px;
+    width: 70%;
+}

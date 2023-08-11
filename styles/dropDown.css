@@ -1,0 +1,44 @@
+
+.dropDownContainer{
+    position: absolute;
+    top: 30%;
+    left: 4%;
+}
+
+@media (max-width:990px){
+    .filterContainer{
+        display: flow-root;
+    }
+    .dropDownContainer{
+        position: inherit;
+    }
+}
+
+.dropDownItem{
+    margin-top: 10px;
+    color: #ff5e00;
+    font-size: 20px;
+    transition: 300ms ease;
+}
+
+.dropDownItem:hover{
+    background-color: #ff5e00;
+}
+
+.dropdown-item.active{
+    background-color: #ff5e00; 
+  }
+
+  .customButton button{
+    background-color: #ff5e00;
+    border: none;
+    transition: 200ms ease;
+  }
+
+  .customButton button:hover{
+    transform: scale(1.05,1.05);
+}
+
+.customButton .btn-primary{
+    background-color: #ff5e00 !important;
+  } 

@@ -1,0 +1,55 @@
+.searchInput{
+    border: 2px solid #ff5e00;
+    border-radius: 15px;
+    padding: 10px;
+    padding-right: 40px;
+}
+
+.inputBtn{
+    background: none;
+    border: none;
+}
+
+.inputBtn:hover{
+  background: none;
+}
+
+.lupa{
+    font-size: 30px;
+    transition: 500ms ease-in;
+}
+
+.lupa:hover{
+    transform: scale(1.1,1.1);
+    color: #ff5e00;
+    cursor: pointer;
+}
+
+.notFoundError{
+    text-align: center;
+    color: #ff5e00;
+    margin-top: 30px;
+    margin-bottom: 30px; 
+}
+
+.filmOrSeries{
+    margin: 0 5px;
+    border-radius: 15px;
+    border: none;
+    background-color: #ff5e00;
+    transition: 300ms ease;
+}
+
+.filmOrSeries:hover{
+    transform: scale(1.05,1.05);
+    background-color: transparent;
+    color: #ff5e00;
+}
+
+.filmOrSeries:focus{
+    background-color: transparent;
+    color: #ff5e00;
+}
+
+
+

@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Display&display=swap');
+
+*{
+    font-family: 'Wix Madefor Display', sans-serif;
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 15px;
+  }
+  
+*::-webkit-scrollbar-thumb {
+    background-color:#ff5e00;
+    border-radius: 15px; 
+  }
+
+
+#root{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.mainSection{
+    flex-grow: 1;
+    overflow-x: hidden;
+}
+

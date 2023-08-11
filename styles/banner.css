@@ -1,0 +1,39 @@
+.bannerContainer{
+    margin-top: 50px;
+}
+
+.banner{
+    object-fit: cover;
+    height: 600px;
+    width: 100%;
+}
+
+.btnBannerContainer{
+   text-align: left;
+}
+
+.btnBanner{
+    background-color: rgb(68, 66, 66);
+    transition: 200ms ease-in;
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.btnBanner:hover{
+    background-color: #ff5e00;
+    transform: scale(1.05,1.05);
+}
+
+.bannerTitle{
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.iconMasInfo{
+    align-self: center;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+

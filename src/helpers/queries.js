@@ -236,3 +236,4 @@ export const obtenerReparto = async (type, id) =>{
     console.log(e);
   }
 }
+

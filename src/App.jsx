@@ -10,7 +10,6 @@ import DetallePelicula from './views/DetallePelicula';
 import ResultadoBusqueda from './views/ResultadoBusqueda';
 import Eror404 from './views/Eror404';
 import { useState } from 'react';
-import Favoritos from './views/Favoritos';
 import RutasProtegidas from './routes/RutasProtegidas';
 import RutasUsuario from './routes/RutasUsuario';
 
@@ -25,7 +24,7 @@ function App() {
         <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></Menu>
         <Routes>  
         <Route exact path="/" element={<Inicio></Inicio>}></Route>
-        <Route exact path="/registro" element={<Registro></Registro>}></Route>
+        <Route exact path="/registro" element={<Registro setUsuarioLogueado={setUsuarioLogueado}></Registro>}></Route>
         <Route exact path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>}></Route>
         <Route exact path='/detalles/:type/:id' element={<DetallePelicula usuarioLogueado={usuarioLogueado}></DetallePelicula>}></Route>
         <Route exact path='/resultado-busqueda/:type/:result' element={<ResultadoBusqueda></ResultadoBusqueda>}></Route>

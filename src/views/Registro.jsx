@@ -1,13 +1,13 @@
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "/styles/registroLogin.css";
-import { registro } from "../helpers/queriesBack";
+import { login, registro } from "../helpers/queriesBack";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 
 
-const Registro = () => {
+const Registro = ({setUsuarioLogueado}) => {
   const {
     register,
     handleSubmit,
@@ -24,7 +24,14 @@ const Registro = () => {
           `Bienvenido/a a will, ${usuario.nombreUsuario} `,
           'success'
         )
-        navegacion('/login');
+        login(usuario).then((res) => {
+          if (res && res.status === 200) {
+            localStorage.setItem("usuario", JSON.stringify(res));
+            setUsuarioLogueado(res);
+            reset();
+            navegacion("/");
+          } 
+        });
       }else{
         Swal.fire({
           icon: 'error',
@@ -76,7 +83,7 @@ const Registro = () => {
                       "El email debe tener el siguiente formato: mail@dominio.com",
                   },
                 })}
-                className={errors.nombreUsuario ? "input-error" : ""}
+                className={errors.email ? "input-error" : ""}
               />
               <Form.Text className="text-danger">
                 {errors.email?.message}
@@ -94,7 +101,7 @@ const Registro = () => {
                       "El password debe tener en 8 y 16 caracteres, al menos un digito, al menos una minúscula y al menos una mayúscula. No puede tener otros simbolos",
                   },
                 })}
-                className={errors.nombreUsuario ? "input-error" : ""}
+                className={errors.password ? "input-error" : ""}
               />
               <Form.Text className="text-danger">
                 {errors.password?.message}

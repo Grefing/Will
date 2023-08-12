@@ -7,7 +7,7 @@ import "/styles/inicioGral.css";
 import { useForm } from "react-hook-form";
 import { obtenerPeliculas, obtenerSeries } from "../helpers/queries";
 import Banner from "./pelicula/Banner";
-import { Form, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 
 const Inicio = () => {

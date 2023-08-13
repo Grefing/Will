@@ -1,3 +1,12 @@
+.footerContainer{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.nameFooter{
+    font-size: 20px;
+}
 .logo{
     font-size: 40px;
     color: #ff5e00;

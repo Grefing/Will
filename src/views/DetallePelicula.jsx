@@ -123,7 +123,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
     window.scrollTo(0, 0);
   };
 
-  console.log(reparto);
+
   useEffect(() => {    
     obtenerListaLikes().then((res) =>{
       const filtrado = res.filter((like) => like.idUsuario === usuarioLogueado.id && like.idPelicula === parseInt(id));

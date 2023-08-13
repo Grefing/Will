@@ -1,0 +1,24 @@
+.logo{
+    font-size: 40px;
+    color: #ff5e00;
+}
+
+.igLogo:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.fcLogo:hover{
+    color: #3b5998;
+    cursor: pointer;
+}
+
+.twLogo:hover{
+    color: #00acee;
+    cursor: pointer;
+}
+
+.ghLogo:hover{
+    color: #171515;
+    cursor: pointer;
+}

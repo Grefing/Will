@@ -57,7 +57,7 @@ const Inicio = () => {
     <section className="mainSection">
       <Banner data={data} type={type} />
       <Container className="mt-4" ref={containerRef}>
-        <div className="d-flex justify-content-between">
+        <div className="containerBtnForm">
           <div className="d-flex">
             <button className="filmOrSeries" onClick={() => {
               setType("films"),

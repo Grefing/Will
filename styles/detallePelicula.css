@@ -127,6 +127,7 @@
      .description{
       top: 55%;
      }
+
   }
 
 @media (max-width: 1050px ){
@@ -266,8 +267,8 @@
   }
 
 .recTitle{
-  margin-top: 30px;
-  margin-left: 200px;
+ justify-content: center;
+ margin-left: 10%;
 }
 
 .recommendations{
@@ -312,6 +313,7 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+
 }
 
 .actorsCards{

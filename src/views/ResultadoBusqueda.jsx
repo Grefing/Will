@@ -20,30 +20,29 @@ const ResultadoBusqueda = () => {
   const { register, handleSubmit, setValue } = useForm();
   const [data, setData] = useState([]);
   const [cont, setCont] = useState(1);
-  const [generos, setGeneros] = useState([])
+  const [generos, setGeneros] = useState([]);
   const [nombreGen, setNombreGen] = useState("");
   let { type, result } = useParams();
   const navegacion = useNavigate();
   const containerRef = useRef();
 
-
   const onSubmit = async (info) => {
     obtenerPelisYSeries(info.peliBuscada, cont).then((res) => {
       setData(res);
       navegacion(`/resultado-busqueda/all/${info.peliBuscada}`);
-      setCont(1)
+      setCont(1);
     });
   };
 
   const filtrarPelis = () => {
     if (result === "allMovies") {
-      obtenerListaGenerosPeliculas().then((res) =>{
-        setGeneros(res)
-      })
-    }else if (result === "allSeries") {
-      obtenerListaGenerosSeries().then((res) =>{
+      obtenerListaGenerosPeliculas().then((res) => {
         setGeneros(res);
-      })
+      });
+    } else if (result === "allSeries") {
+      obtenerListaGenerosSeries().then((res) => {
+        setGeneros(res);
+      });
     }
   };
 
@@ -54,7 +53,7 @@ const ResultadoBusqueda = () => {
       navegacion(`/resultado-busqueda/films/allMovies`);
       setValue("peliBuscada", "");
     });
-    setNombreGen("")
+    setNombreGen("");
   };
 
   const mostrarSeries = () => {
@@ -64,7 +63,7 @@ const ResultadoBusqueda = () => {
       navegacion(`/resultado-busqueda/series/allSeries`);
       setValue("peliBuscada", "");
     });
-    setNombreGen("")
+    setNombreGen("");
   };
 
   useEffect(() => {
@@ -97,7 +96,15 @@ const ResultadoBusqueda = () => {
       <div className="filterContainer">
         {result === "allMovies" || result === "allSeries" ? (
           <div className="dropDownContainer">
-            <DropdownMenu generos={generos} setData={setData} cont={cont} setCont={setCont} nombreGen={nombreGen} setNombreGen={setNombreGen} result={result}></DropdownMenu>
+            <DropdownMenu
+              generos={generos}
+              setData={setData}
+              cont={cont}
+              setCont={setCont}
+              nombreGen={nombreGen}
+              setNombreGen={setNombreGen}
+              result={result}
+            ></DropdownMenu>
           </div>
         ) : (
           <></>
@@ -121,15 +128,17 @@ const ResultadoBusqueda = () => {
                 <BsSearch className="align-self-center lupa"></BsSearch>
               </Button>
             </div>
-            <input
-              type="text"
-              className="searchInput"
-              placeholder="Buscar..."
-              {...register("peliBuscada", {
-                required:
-                  "Porfavor ingrese el nombre de la pelicula que desee buscar",
-              })}
-            />
+            <div className="containerInput">
+              <input
+                type="text"
+                className="searchInput"
+                placeholder="Buscar..."
+                {...register("peliBuscada", {
+                  required:
+                    "Porfavor ingrese el nombre de la pelicula que desee buscar",
+                })}
+              />
+            </div>
           </form>
         </div>
         {result !== "allMovies" && result !== "allSeries" ? (

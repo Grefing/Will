@@ -20,6 +20,24 @@
     margin: 0px 5px;
 }
 
+@media (max-width: 990px){
+    .btnAllMovies{
+        width: 200px;
+        margin: 10px 0;
+    }
+    
+    .containerInput{
+        align-self: center;
+    }
+}
+
+@media(max-width: 550px){
+    .searchInput{
+        padding: 10px;
+        width: 100%;
+    }
+}
+
 .btnAllMovies:hover{
     transform: scale(1.05,1.05);
     color: #ff5e00;

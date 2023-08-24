@@ -2,6 +2,8 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { login } from "../helpers/queriesBack";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+
 import Swal from "sweetalert2";
 import "/styles/registroLogin.css";
 
@@ -13,6 +15,7 @@ const Login = ({ setUsuarioLogueado }) => {
     reset,
   } = useForm();
   const navegacion = useNavigate();
+  const containerRef = useRef();
 
 
 
@@ -30,9 +33,14 @@ const Login = ({ setUsuarioLogueado }) => {
     });
   };
 
+  useEffect(() => {
+    containerRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [])
+  
+
   return (
     <section className="mt-5 mainSection">
-      <div className="row registrationContainer">
+      <div className="row registrationContainer" ref={containerRef}>
         <div className="col-10 col-sm-8 col-md-6 col-xl-3 containerRegistroForm">
           <h3 className="titleRegister">Iniciar sesión</h3>
           <div className="registerLine"></div>

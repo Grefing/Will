@@ -4,50 +4,57 @@ import "/styles/registroLogin.css";
 import { login, registro } from "../helpers/queriesBack";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 
 
-
-const Registro = ({setUsuarioLogueado}) => {
+const Registro = ({ setUsuarioLogueado }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm();
   const navegacion = useNavigate();
+  const containerRef = useRef();
 
   const onSubmit = (usuario) => {
-    registro(usuario).then((res) =>{
+    registro(usuario).then((res) => {
       if (res && res.status === 201) {
         Swal.fire(
-          'Bien hecho!',
+          "Bien hecho!",
           `Bienvenido/a a will, ${usuario.nombreUsuario} `,
-          'success'
-        )
+          "success"
+        );
         login(usuario).then((res) => {
           if (res && res.status === 200) {
             localStorage.setItem("usuario", JSON.stringify(res));
             setUsuarioLogueado(res);
             reset();
             navegacion("/");
-          } 
+          }
         });
-      }else{
+      } else {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Algo fué mal!',
-        })
+          icon: "error",
+          title: "Oops...",
+          text: "Algo fué mal!",
+        });
       }
-    })
+    });
   };
 
+
+  useEffect(() => {
+    containerRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [])
+  
   return (
-    <section className="mt-5 mainSection">
-      <div className="row registrationContainer">
+    <section className="mt-5 mainSection" ref={containerRef}>
+      <div className="row registrationContainer" >
         <div className="col-10 col-sm-8 col-md-6 col-xl-3 containerRegistroForm">
-        <h3 className="titleRegister">Registro</h3>
-        <div className="registerLine"></div>
+          <h3 className="titleRegister">Registro</h3>
+          <div className="registerLine"></div>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-2 form">
               <Form.Control
@@ -107,6 +114,24 @@ const Registro = ({setUsuarioLogueado}) => {
                 {errors.password?.message}
               </Form.Text>
             </Form.Group>
+
+            <Form.Group className="mb-2">
+              <Form.Control
+                type="password"
+                placeholder="Confirme la contraseña"
+                {...register("confirmPassword", {
+                  required: "La confirmación de contraseña es obligatoria",
+                  validate: (value) =>
+                    value === watch("password") ||
+                    "Las contraseñas no coinciden",
+                })}
+                className={errors.confirmPassword ? "input-error" : ""}
+              />
+              <Form.Text className="text-danger">
+                {errors.confirmPassword?.message}
+              </Form.Text>
+            </Form.Group>
+
             <div className="row">
               <Button
                 className="btn btn-dark btn-lg btn-block mb-2 btnRegister"

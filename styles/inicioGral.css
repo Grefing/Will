@@ -54,6 +54,7 @@
     border: none;
     background-color: #ff5e00;
     transition: 300ms ease;
+    color: white;
 }
 
 .filmOrSeries:hover{

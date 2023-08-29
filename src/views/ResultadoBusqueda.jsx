@@ -112,7 +112,7 @@ const ResultadoBusqueda = () => {
         )}
       </Container>
 
-      <Container className="mt-4 ">
+      <Container className="margen">
         <div className="containerResult" ref={containerRef}>
           <div className="generalContainerShow">
             <div className="containerBtnShow">

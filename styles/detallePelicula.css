@@ -93,6 +93,7 @@
     transition: 300ms ease-in;
     z-index: 1;
     margin-right: 5%;
+    color: white;
   }
 
   .likeIcon:hover{
@@ -107,6 +108,7 @@
     font-size: 40px;
     transition: 300ms ease-in;
     z-index: 1;
+    color: white;
   }
 
   .watchLaterIcon:hover{
@@ -125,6 +127,7 @@
 
 .recommendationsContainer{
   margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 }

@@ -30,6 +30,7 @@
     padding: 10px;
     background-color: #ff5e00;
     transition: 300ms ease;
+    color: white;
 }
 
 .btnAllMovies:hover{
@@ -66,7 +67,11 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin: 10px 0;
+        margin-bottom: 10px;
+    }
+
+    .margen{
+        margin-top: 5px;
     }
 
     .containerBtnShow{

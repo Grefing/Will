@@ -265,10 +265,14 @@ const DetallePelicula = ({ usuarioLogueado }) => {
               <></>
             )}
 
-            <div className="d-flex flex-column">
-              <h2 className="recTitle">Recomendaciones:</h2>
-              <div className="trailerLine"></div>
-              <div className="recommendations">
+            <Container className="recommendationsContainer">
+              <div>
+                <h2 >Recomendaciones:</h2>
+                <div className="recLine"></div>
+              </div>
+             
+
+              <div className="recommendations d-flex">
                 {recomendaciones.length > 0 ? (
                   recomendaciones.map((data) => (
                     <CardPelicula key={data.id} data={data}></CardPelicula>
@@ -281,7 +285,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
                   </h5>
                 )}
               </div>
-            </div>
+            </Container>
           </>
         )}
       </section>

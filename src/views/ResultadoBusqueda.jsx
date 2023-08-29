@@ -92,8 +92,9 @@ const ResultadoBusqueda = () => {
   }, [cont, result]);
 
   return (
-    <section className="mainSection containerResBus d-flex">
-      <div className="filterContainer">
+    <section className="mainSection containerResBus ">
+
+      <Container className="filterContainer">
         {result === "allMovies" || result === "allSeries" ? (
           <div className="dropDownContainer">
             <DropdownMenu
@@ -109,25 +110,30 @@ const ResultadoBusqueda = () => {
         ) : (
           <></>
         )}
-      </div>
+      </Container>
 
       <Container className="mt-4 ">
         <div className="containerResult" ref={containerRef}>
-          <div>
-            <button onClick={mostrarPelis} className="btnAllMovies">
-              Mostrar todas las Peliculas
-            </button>
-            <button onClick={mostrarSeries} className="btnAllMovies">
-              Mostrar todas las Series
-            </button>
+          <div className="generalContainerShow">
+            <div className="containerBtnShow">
+              <button onClick={mostrarPelis} className="btnAllMovies">
+                Mostrar todas las Peliculas
+              </button>
+            </div>
+
+            <div className="containerBtnShow">
+              <button onClick={mostrarSeries} className="btnAllMovies">
+                Mostrar todas las Series
+              </button>
+            </div>
           </div>
 
           <form className="d-flex searchForm" onSubmit={handleSubmit(onSubmit)}>
-            <div className="mx-3 d-flex">
-              <Button type="submit" className="inputBtn">
+            {/* <div className="mx-3 d-flex">
+              <button type="submit" className="inputBtnResults">
                 <BsSearch className="align-self-center lupa"></BsSearch>
-              </Button>
-            </div>
+              </button>
+            </div> */}
             <div className="containerInput">
               <input
                 type="text"
@@ -157,7 +163,7 @@ const ResultadoBusqueda = () => {
           )}
         </Row>
         <div className="d-flex justify-content-center ">
-          <Paginador cont={cont} setCont={setCont}></Paginador>
+          <Paginador cont={cont} setCont={setCont} data={data}></Paginador>
         </div>
       </Container>
     </section>

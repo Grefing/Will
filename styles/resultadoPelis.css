@@ -7,8 +7,17 @@
       justify-content: space-between;
 }
 
-.filterContainer{
-    display: flex;
+.inputBtnResults{
+    background-color: transparent;
+    border: none;
+}
+
+.inputBtnResults:hover{
+    background-color: transparent;
+}
+
+.containerBtnShow{
+    margin: 5px 0;
 }
 
 .btnAllMovies{
@@ -17,7 +26,33 @@
     padding: 10px;
     background-color: #ff5e00;
     transition: 300ms ease;
-    margin: 0px 5px;
+}
+
+.containerInput{
+    align-self: center;
+}
+
+
+@media (max-width: 700px){
+    .containerResult{
+        flex-direction: column;
+    }
+
+    .searchForm{
+        justify-content: center;
+    }
+
+    .generalContainerShow{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 10px 0;
+    }
+
+    .containerBtnShow{
+        margin: 0;
+    }
+
 }
 
 @media (max-width: 990px){
@@ -31,9 +66,9 @@
     }
 }
 
-@media(max-width: 550px){
+@media (max-width: 500px){
+    
     .searchInput{
-        padding: 10px;
         width: 100%;
     }
 }

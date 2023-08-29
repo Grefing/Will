@@ -8,8 +8,6 @@ import { Button } from "react-bootstrap";
 const DropdownMenu = ({ generos, setData, cont, setCont, nombreGen, setNombreGen, result }) => {
   const [idGenero, setIdGenero] = useState("");
 
-  console.log(result);
-
   useEffect(() => {
    if (result === "allMovies") {
     filtrarPeliculas(idGenero, cont).then((res) => {

@@ -4,6 +4,7 @@
     cursor: pointer;
     transition: 0.3s;
     border-radius: 20px;
+    
 }
 
 .imgReparto{
@@ -21,10 +22,11 @@
 }
 
 .actorName{
+    align-self: center;
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 180px;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 15px;

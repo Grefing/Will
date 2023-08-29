@@ -113,7 +113,7 @@ const Inicio = () => {
       </Container>
       <div className="d-flex justify-content-center">
         {data.length > 0 ? (
-          <Paginador cont={cont} setCont={setCont}></Paginador>
+          <Paginador cont={cont} setCont={setCont} data={data}></Paginador>
         ) : undefined}
       </div>
     </section>

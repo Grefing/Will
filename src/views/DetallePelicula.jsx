@@ -127,45 +127,46 @@ const DetallePelicula = ({ usuarioLogueado }) => {
   };
 
   useEffect(() => {
-    obtenerListaLikes().then((res) => {
-      const filtrado = res.filter(
-        (like) =>
-          like.idUsuario === usuarioLogueado.id &&
-          like.idPelicula === parseInt(id)
-      );
-      if (filtrado.length > 0) {
-        setIdLike(filtrado[0]._id);
-      }
-    });
-
-    obtenerListaVerDespues().then((res) => {
-      const filtrado = res.filter(
-        (verDespues) =>
-          verDespues.idUsuario === usuarioLogueado.id &&
-          verDespues.idPelicula === parseInt(id)
-      );
-      if (filtrado.length > 0) {
-        setIdSeeLater(filtrado[0]._id);
-      }
-    });
-
-    if (idLike !== "") {
-      obtenerLike(idLike).then((res) => {
-        if (res.status === 200) {
-          setColorLike("#ff5e00");
-        }
-      });
-    }
-
-    if (idSeeLater !== "") {
-      obtenerVerDespues(idSeeLater).then((res) => {
-        if (res.status === 200) {
-          setColorClock("#ff5e00");
-        }
-      });
-    }
-
     fetchData();
+    if (Object.keys(usuarioLogueado).length > 0) {
+      obtenerListaLikes().then((res) => {
+        const filtrado = res.filter(
+          (like) =>
+            like.idUsuario === usuarioLogueado.id &&
+            like.idPelicula === parseInt(id)
+        );
+        if (filtrado.length > 0) {
+          setIdLike(filtrado[0]._id);
+        }
+      });
+
+      obtenerListaVerDespues().then((res) => {
+        const filtrado = res.filter(
+          (verDespues) =>
+            verDespues.idUsuario === usuarioLogueado.id &&
+            verDespues.idPelicula === parseInt(id)
+        );
+        if (filtrado.length > 0) {
+          setIdSeeLater(filtrado[0]._id);
+        }
+      });
+
+      if (idLike !== "") {
+        obtenerLike(idLike).then((res) => {
+          if (res.status === 200) {
+            setColorLike("#ff5e00");
+          }
+        });
+      }
+
+      if (idSeeLater !== "") {
+        obtenerVerDespues(idSeeLater).then((res) => {
+          if (res.status === 200) {
+            setColorClock("#ff5e00");
+          }
+        });
+      }
+    } 
   }, [id, idLike, idSeeLater]);
 
   return (
@@ -218,7 +219,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
               <img
                 src={`https://image.tmdb.org/t/p/original${detallePeli.backdrop_path}`}
                 alt="imgDetallePeli"
-                className="imgPeli"
+                className="imgPeli img-fluid"
               />
               {type === "films" ? (
                 <>
@@ -267,10 +268,9 @@ const DetallePelicula = ({ usuarioLogueado }) => {
 
             <Container className="recommendationsContainer">
               <div>
-                <h2 >Recomendaciones:</h2>
+                <h2>Recomendaciones:</h2>
                 <div className="recLine"></div>
               </div>
-             
 
               <div className="recommendations d-flex">
                 {recomendaciones.length > 0 ? (

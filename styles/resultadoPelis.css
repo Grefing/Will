@@ -20,6 +20,10 @@
     margin: 5px 0;
 }
 
+.containerInput{
+    align-self: center;
+}
+
 .btnAllMovies{
     border-radius: 15px;
     border: none;
@@ -28,10 +32,26 @@
     transition: 300ms ease;
 }
 
-.containerInput{
-    align-self: center;
+.btnAllMovies:hover{
+    transform: scale(1.05,1.05);
+    color: #ff5e00;
+    background-color: transparent;
 }
 
+.btnAllMovies:focus{
+    color: #ff5e00;
+    background-color: transparent;
+}
+
+.resultTitle{
+    margin-top: 30px;
+}
+
+.resultLine{
+    background-color: #ff5e00;
+    height: 3px;
+    width: 70%;
+}
 
 @media (max-width: 700px){
     .containerResult{
@@ -71,25 +91,4 @@
     .searchInput{
         width: 100%;
     }
-}
-
-.btnAllMovies:hover{
-    transform: scale(1.05,1.05);
-    color: #ff5e00;
-    background-color: transparent;
-}
-
-.btnAllMovies:focus{
-    color: #ff5e00;
-    background-color: transparent;
-}
-
-.resultTitle{
-    margin-top: 30px;
-}
-
-.resultLine{
-    background-color: #ff5e00;
-    height: 3px;
-    width: 70%;
 }

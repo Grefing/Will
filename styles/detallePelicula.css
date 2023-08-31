@@ -366,3 +366,47 @@
    }
 
 }
+
+.containerAllComments{
+ /* display: flex;
+  flex-direction: column-reverse; */
+}
+
+.containerComentario{
+  margin: 15px 0;
+}
+
+.containerTexto{
+  width: 100%;
+}
+
+.comentarioUsuario{
+  border: 1px solid white;
+  border-radius: 10px;
+  height: 40px;
+  margin: 10px 5px;
+}
+
+.descripcion{
+  margin: 2px 5px;
+}
+
+.paginadorComentarios{
+  display: flex;
+  justify-content: center;
+}
+
+.moveComments{
+  align-self: center;
+  font-size: 30px;
+  color: #ff5e00;
+}
+
+.moveComments:hover{
+  cursor: pointer;
+}
+
+.deleteCross{
+  font-size: 30px;
+  color: red;
+}

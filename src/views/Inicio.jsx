@@ -55,7 +55,7 @@ const Inicio = () => {
 
   return (
     <section className="mainSection">
-      <Banner data={data} type={type} />
+      <Banner data={data} type={type}/>
       <Container className="mt-4" ref={containerRef}>
         <div className="containerBtnForm">
           <div className="d-flex">

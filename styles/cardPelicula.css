@@ -11,6 +11,7 @@
   
   .movie-card img {
     transition: 0.3s;
+    width: 100%;
     }
   
   .movie-card:hover img {
@@ -36,6 +37,8 @@
     transition: opacity 0.5s, transform 0.3s;
     margin: 0;
   }
+
+ 
 
 
 

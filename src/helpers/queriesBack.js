@@ -2,7 +2,9 @@ import axios from "axios";
 
 const URL_usuario = import.meta.env.VITE_API_USUARIO;
 const URL_like = import.meta.env.VITE_API_LIKE;
-const URL_verDespues= import.meta.env.VITE_API_VER_DESPUES
+const URL_verDespues= import.meta.env.VITE_API_VER_DESPUES;
+const URL_comentario = import.meta.env.VITE_API_COMENTARIO;
+
 
 // ?USUARIOS
 export const registro = async (usuario) => {
@@ -19,6 +21,7 @@ export const registro = async (usuario) => {
     return respuesta;
   } catch (e) {
     console.log(e);
+    return e.response.data.mensaje;
   }
 };
 
@@ -31,7 +34,6 @@ export const login = async (usuario) => {
     });
 
     const { data } = response;
-    console.log(data);
     return {
       status: response.status,
       id: data.id,
@@ -42,6 +44,19 @@ export const login = async (usuario) => {
   }
 };
 
+export const obtenerUsuario = async (idUsuario) => {
+  try {
+    const response = await axios.get(URL_usuario + `usuario/${idUsuario}`)
+    const { data } = response;
+    return {
+      status: response.status,
+      id: data.id,
+      nombreUsuario: data.nombreUsuario,
+    };
+  } catch (e) {
+    console.log(e);
+  }
+};
 // ?LIKES
 
 export const crearLike = async (idUsuario, idPelicula, tipo) => {
@@ -145,6 +160,36 @@ export const obtenerVerDespues = async (id) => {
 export const obtenerListaVerDespues= async () =>{
   try {
       const response= await axios.get(URL_verDespues);
+      const {data} = response;
+
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+}
+
+// ?COMENTARIOS
+
+export const crearComentario= async ( idPelicula, idUsuario, nombreUsuario, descripcion) => {
+  try {
+    const response = await axios.post(
+      URL_comentario + "nuevoComentario",
+      { idPelicula, idUsuario, nombreUsuario, descripcion },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+       return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const obtenerListaComentarios = async () =>{
+  try {
+      const response= await axios.get(URL_comentario);
       const {data} = response;
 
       return data;

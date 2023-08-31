@@ -24,9 +24,13 @@ import {
   obtenerListaVerDespues,
   obtenerVerDespues,
 } from "../helpers/queriesBack";
-import { Container, Row } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 import CardPelicula from "./pelicula/CardPelicula";
 import CardReparto from "./pelicula/CardReparto";
+import Comentarios from "./pelicula/Comentarios";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import {AiOutlineClose} from "react-icons/ai";
+
 
 const DetallePelicula = ({ usuarioLogueado }) => {
   const [detallePeli, setDetallePeli] = useState({});
@@ -38,6 +42,9 @@ const DetallePelicula = ({ usuarioLogueado }) => {
   const [idSeeLater, setIdSeeLater] = useState("");
   const [recomendaciones, setRecomendaciones] = useState([]);
   const [reparto, setReparto] = useState([]);
+  const [comentarios, setComentarios] = useState([]);
+  const [paginador, setPaginador] = useState(0)
+  const [cont, setCont] = useState(1)
   let { type, id } = useParams();
   const navegacion = useNavigate();
 
@@ -166,8 +173,13 @@ const DetallePelicula = ({ usuarioLogueado }) => {
           }
         });
       }
-    } 
+    }
+
+    setPaginador(0);
+    setCont(1);
   }, [id, idLike, idSeeLater]);
+
+  console.log(comentarios);
 
   return (
     <>
@@ -285,6 +297,72 @@ const DetallePelicula = ({ usuarioLogueado }) => {
                   </h5>
                 )}
               </div>
+
+              <Container className="my-5">
+                <div>
+                  <h2>Comentarios</h2>
+                  <div className="recLine"></div>
+                </div>
+
+                <div className="my-4 d-flex">
+                  <Comentarios
+                    usuarioLogueado={usuarioLogueado}
+                    comentarios={comentarios}
+                    setComentarios={setComentarios}
+                  ></Comentarios>
+                </div>
+
+                <div className="containerAllComments">
+                  {[...comentarios].reverse().slice(paginador, paginador+5).map((comentario) => (
+                    <div
+                      key={comentario._id}
+                      className="d-flex containerComentario"
+                    >
+                      <div>
+                        <img
+                          src="https://static.vecteezy.com/system/resources/previews/008/844/895/non_2x/user-icon-design-free-png.png"
+                          alt="imgUsuario"
+                          width={"50px"}
+                        />
+                        <p className="text-center">{comentario.nombreUsuario}</p>
+                      </div>
+
+                      <div className="containerTexto">
+                        <div className="comentarioUsuario align-self-center d-flex">
+                          <p className="descripcion">
+                            {comentario.descripcion}
+                          </p>
+                        </div>
+                      </div>
+
+                        {
+                          comentario.idUsuario === usuarioLogueado.id && comentario.idPelicula === parseInt(id) ?
+                          (<AiOutlineClose className="deleteCross"></AiOutlineClose>) : (<></>)
+                        }
+                  
+                    </div>
+                  ))}
+                </div>
+
+                <div className="paginadorComentarios">
+                  {
+                    paginador !== 0 ? (<IoIosArrowBack className="moveComments" onClick={() => (setPaginador(paginador - 5), setCont(cont-1) )}>back</IoIosArrowBack>):
+                    (<></>)
+                  }
+                  {
+                    comentarios.length > 5 ? (<h1>{cont}</h1>) : (<></>)
+                  }
+                 {
+                  comentarios.slice(paginador+5, paginador+10).length > 0 ?(
+                    <IoIosArrowForward className="moveComments" onClick={() => (setPaginador(paginador + 5),  setCont(cont+1))}>next</IoIosArrowForward>
+                  ): (<></>)
+                 }
+                </div>
+              </Container>
+                
+
+
+
             </Container>
           </>
         )}

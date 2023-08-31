@@ -40,7 +40,6 @@ const VerDespues = ({ usuarioLogueado }) => {
       const filtrado = res.filter(
         (item) => item.idUsuario === usuarioLogueado.id
       );
-      console.log("hola");
       setData(filtrado);
     });
   }, [usuarioLogueado]);

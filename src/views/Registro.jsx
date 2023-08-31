@@ -38,7 +38,7 @@ const Registro = ({ setUsuarioLogueado }) => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Algo fué mal!",
+          text: `${res}`,
         });
       }
     });

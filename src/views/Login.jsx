@@ -22,7 +22,6 @@ const Login = ({ setUsuarioLogueado }) => {
   const onSubmit = (usuario) => {
     login(usuario).then((res) => {
       if (res && res.status === 200) {
-        console.log(res);
         localStorage.setItem("usuario", JSON.stringify(res));
         setUsuarioLogueado(res);
         reset();

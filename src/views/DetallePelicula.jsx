@@ -102,6 +102,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
 
   const eliminarComentario = (idComentario) => {
     borrarComentario(idComentario).then(() => {
+      setIdComentario(idComentario)
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -286,8 +287,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
                           <AiOutlineClose
                             className="deleteCross"
                             onClick={() => (
-                              eliminarComentario(comentario._id),
-                              setIdComentario(comentario._id)
+                              eliminarComentario(comentario._id)
                             )}
                           ></AiOutlineClose>
                         ) : (

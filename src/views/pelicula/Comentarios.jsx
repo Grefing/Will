@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "/styles/comentarios.css";
 
-const Comentarios = ({ usuarioLogueado, setComentarios, idComentario }) => {
+const Comentarios = ({ usuarioLogueado, comentarios, setComentarios, idComentario }) => {
   const {
     register,
     handleSubmit,

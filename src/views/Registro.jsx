@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 
-
 const Registro = ({ setUsuarioLogueado }) => {
   const {
     register,
@@ -44,14 +43,13 @@ const Registro = ({ setUsuarioLogueado }) => {
     });
   };
 
-
   useEffect(() => {
     containerRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [])
-  
+  }, []);
+
   return (
     <section className="mt-5 mainSection" ref={containerRef}>
-      <div className="row registrationContainer" >
+      <div className="row registrationContainer">
         <div className="col-10 col-sm-8 col-md-6 col-xl-3 containerRegistroForm">
           <h3 className="titleRegister">Registro</h3>
           <div className="registerLine"></div>

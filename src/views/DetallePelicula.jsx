@@ -15,22 +15,17 @@ import { BsStopwatchFill } from "react-icons/bs";
 import "/styles/detallePelicula.css";
 import Loader from "../components/Loader";
 import {
-  borrarLike,
-  borrarVerDespues,
-  crearLike,
-  crearVerDespues,
-  obtenerLike,
-  obtenerListaLikes,
-  obtenerListaVerDespues,
-  obtenerVerDespues,
+  borrarComentario,
 } from "../helpers/queriesBack";
-import { Button, Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import CardPelicula from "./pelicula/CardPelicula";
 import CardReparto from "./pelicula/CardReparto";
 import Comentarios from "./pelicula/Comentarios";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import {AiOutlineClose} from "react-icons/ai";
-
+import { AiOutlineClose } from "react-icons/ai";
+import Swal from "sweetalert2";
+import Like from "../components/Like";
+import VerDespues from "../components/VerDespues";
 
 const DetallePelicula = ({ usuarioLogueado }) => {
   const [detallePeli, setDetallePeli] = useState({});
@@ -43,39 +38,12 @@ const DetallePelicula = ({ usuarioLogueado }) => {
   const [recomendaciones, setRecomendaciones] = useState([]);
   const [reparto, setReparto] = useState([]);
   const [comentarios, setComentarios] = useState([]);
-  const [paginador, setPaginador] = useState(0)
-  const [cont, setCont] = useState(1)
+  const [paginador, setPaginador] = useState(0);
+  const [cont, setCont] = useState(1);
+  const [idComentario, setIdComentario] = useState("");
   let { type, id } = useParams();
+
   const navegacion = useNavigate();
-
-  const colorChangerLike = (pintar) => {
-    if (colorLike === "") {
-      crearLike(usuarioLogueado.id, id, type).then((res) => {
-        setIdLike(res.id);
-        setColorLike(pintar);
-      });
-    } else {
-      borrarLike(idLike).then((res) => {
-        setIdLike("");
-        setColorLike("");
-      });
-    }
-  };
-
-  const colorChangerClock = (pintar) => {
-    if (colorClock === "") {
-      crearVerDespues(usuarioLogueado.id, id, type).then((res) => {
-        console.log(res);
-        setIdSeeLater(res.id);
-        setColorClock(pintar);
-      });
-    } else {
-      borrarVerDespues(idSeeLater).then(() => {
-        setIdSeeLater("");
-        setColorClock("");
-      });
-    }
-  };
 
   const goToLogin = () => {
     navegacion("/login");
@@ -130,56 +98,25 @@ const DetallePelicula = ({ usuarioLogueado }) => {
         setIsLoading(false);
       });
     }
-    window.scrollTo(0, 0);
+  };
+
+  const eliminarComentario = (idComentario) => {
+    borrarComentario(idComentario).then(() => {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Comentario eliminado",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    });
   };
 
   useEffect(() => {
     fetchData();
-    if (Object.keys(usuarioLogueado).length > 0) {
-      obtenerListaLikes().then((res) => {
-        const filtrado = res.filter(
-          (like) =>
-            like.idUsuario === usuarioLogueado.id &&
-            like.idPelicula === parseInt(id)
-        );
-        if (filtrado.length > 0) {
-          setIdLike(filtrado[0]._id);
-        }
-      });
-
-      obtenerListaVerDespues().then((res) => {
-        const filtrado = res.filter(
-          (verDespues) =>
-            verDespues.idUsuario === usuarioLogueado.id &&
-            verDespues.idPelicula === parseInt(id)
-        );
-        if (filtrado.length > 0) {
-          setIdSeeLater(filtrado[0]._id);
-        }
-      });
-
-      if (idLike !== "") {
-        obtenerLike(idLike).then((res) => {
-          if (res.status === 200) {
-            setColorLike("#ff5e00");
-          }
-        });
-      }
-
-      if (idSeeLater !== "") {
-        obtenerVerDespues(idSeeLater).then((res) => {
-          if (res.status === 200) {
-            setColorClock("#ff5e00");
-          }
-        });
-      }
-    }
-
     setPaginador(0);
     setCont(1);
-  }, [id, idLike, idSeeLater]);
-
-  console.log(comentarios);
+  }, [id]);
 
   return (
     <>
@@ -190,13 +127,15 @@ const DetallePelicula = ({ usuarioLogueado }) => {
           <>
             <div className="optionsContainer">
               {usuarioLogueado.nombreUsuario ? (
-                <AiFillHeart
-                  className="likeIcon"
-                  style={{ color: colorLike }}
-                  onClick={() => {
-                    colorChangerLike("#ff5e00");
-                  }}
-                ></AiFillHeart>
+                <Like
+                  colorLike={colorLike}
+                  usuarioLogueado={usuarioLogueado}
+                  id={id}
+                  type={type}
+                  setIdLike={setIdLike}
+                  idLike={idLike}
+                  setColorLike={setColorLike}
+                ></Like>
               ) : (
                 <AiFillHeart
                   className="likeIcon"
@@ -206,13 +145,15 @@ const DetallePelicula = ({ usuarioLogueado }) => {
 
               {usuarioLogueado.nombreUsuario ? (
                 <div className="containerClock">
-                  <BsStopwatchFill
-                    className="watchLaterIcon"
-                    style={{ color: colorClock }}
-                    onClick={() => {
-                      colorChangerClock("#ff5e00");
-                    }}
-                  ></BsStopwatchFill>
+                  <VerDespues
+                    colorClock={colorClock}
+                    usuarioLogueado={usuarioLogueado}
+                    id={id}
+                    type={type}
+                    idSeeLater={idSeeLater}
+                    setIdSeeLater={setIdSeeLater}
+                    setColorClock={setColorClock}
+                  ></VerDespues>
                 </div>
               ) : (
                 <div className="containerClock">
@@ -304,65 +245,85 @@ const DetallePelicula = ({ usuarioLogueado }) => {
                   <div className="recLine"></div>
                 </div>
 
-                <div className="my-4 d-flex">
+                <div className="my-4">
                   <Comentarios
                     usuarioLogueado={usuarioLogueado}
                     comentarios={comentarios}
                     setComentarios={setComentarios}
+                    idComentario={idComentario}
                   ></Comentarios>
                 </div>
 
                 <div className="containerAllComments">
-                  {[...comentarios].reverse().slice(paginador, paginador+5).map((comentario) => (
-                    <div
-                      key={comentario._id}
-                      className="d-flex containerComentario"
-                    >
-                      <div>
-                        <img
-                          src="https://static.vecteezy.com/system/resources/previews/008/844/895/non_2x/user-icon-design-free-png.png"
-                          alt="imgUsuario"
-                          width={"50px"}
-                        />
-                        <p className="text-center">{comentario.nombreUsuario}</p>
-                      </div>
-
-                      <div className="containerTexto">
-                        <div className="comentarioUsuario align-self-center d-flex">
-                          <p className="descripcion">
-                            {comentario.descripcion}
+                  {[...comentarios]
+                    .reverse()
+                    .slice(paginador, paginador + 5)
+                    .map((comentario) => (
+                      <div
+                        key={comentario._id}
+                        className="d-flex containerComentario"
+                      >
+                        <div className="d-flex flex-column">
+                          <img
+                            src="https://static.vecteezy.com/system/resources/previews/008/844/895/non_2x/user-icon-design-free-png.png"
+                            alt="imgUsuario"
+                            width={"50px"}
+                            className="align-self-center justify-content-center "
+                          />
+                          <p className="text-center align-self-center justify-content-center nombreComentario">
+                            {comentario.nombreUsuario}
                           </p>
                         </div>
-                      </div>
 
-                        {
-                          comentario.idUsuario === usuarioLogueado.id && comentario.idPelicula === parseInt(id) ?
-                          (<AiOutlineClose className="deleteCross"></AiOutlineClose>) : (<></>)
-                        }
-                  
-                    </div>
-                  ))}
+                        <div className="containerTexto">
+                            <p className="descripcion">
+                              {comentario.descripcion}
+                            </p>
+                        </div>
+
+                        {comentario.idUsuario === usuarioLogueado.id &&
+                        comentario.idPelicula === parseInt(id) ? (
+                          <AiOutlineClose
+                            className="deleteCross"
+                            onClick={() => (
+                              eliminarComentario(comentario._id),
+                              setIdComentario(comentario._id)
+                            )}
+                          ></AiOutlineClose>
+                        ) : (
+                          <></>
+                        )}
+                      </div>
+                    ))}
                 </div>
 
                 <div className="paginadorComentarios">
-                  {
-                    paginador !== 0 ? (<IoIosArrowBack className="moveComments" onClick={() => (setPaginador(paginador - 5), setCont(cont-1) )}>back</IoIosArrowBack>):
-                    (<></>)
-                  }
-                  {
-                    comentarios.length > 5 ? (<h1>{cont}</h1>) : (<></>)
-                  }
-                 {
-                  comentarios.slice(paginador+5, paginador+10).length > 0 ?(
-                    <IoIosArrowForward className="moveComments" onClick={() => (setPaginador(paginador + 5),  setCont(cont+1))}>next</IoIosArrowForward>
-                  ): (<></>)
-                 }
+                  {paginador !== 0 ? (
+                    <IoIosArrowBack
+                      className="moveComments"
+                      onClick={() => (
+                        setPaginador(paginador - 5), setCont(cont - 1)
+                      )}
+                    >
+                    </IoIosArrowBack>
+                  ) : (
+                    <></>
+                  )}
+                  {comentarios.length > 5 ? <h1>{cont}</h1> : <></>}
+                  {comentarios.slice(paginador + 5, paginador + 10).length >
+                  0 ? (
+                    <IoIosArrowForward
+                      className="moveComments"
+                      onClick={() => (
+                        setPaginador(paginador + 5), setCont(cont + 1)
+                      )}
+                    >
+                    </IoIosArrowForward>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </Container>
-                
-
-
-
             </Container>
           </>
         )}

@@ -197,3 +197,16 @@ export const obtenerListaComentarios = async () =>{
       console.log(e);
     }
 }
+
+export const borrarComentario = async (idComentario) =>{
+  try {
+      const response= await axios.delete(URL_comentario + `eliminarComentario/${idComentario}`);
+      const {data} = response;
+
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+}
+
+

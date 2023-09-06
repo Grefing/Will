@@ -367,28 +367,31 @@
 
 }
 
-.containerAllComments{
- /* display: flex;
-  flex-direction: column-reverse; */
-}
-
 .containerComentario{
   margin: 15px 0;
+  display: flex;
 }
 
-.containerTexto{
-  width: 100%;
-}
-
-.comentarioUsuario{
-  border: 1px solid white;
+.containerTexto {
+  flex-grow: 1; 
+  border: 1px solid rgba(158, 157, 157, 0.973);
   border-radius: 10px;
-  height: 40px;
   margin: 10px 5px;
+  word-wrap: break-word;
+  width: 0%;
+}
+
+.imgAndUser{
+  display: flex;
+  flex-direction: column;
+}
+
+.nombreComentario{
+  width: 80px;
 }
 
 .descripcion{
-  margin: 2px 5px;
+  margin: 5px 10px;
 }
 
 .paginadorComentarios{
@@ -409,4 +412,9 @@
 .deleteCross{
   font-size: 30px;
   color: red;
+  margin-top: 15px;
+}
+
+.deleteCross:hover{
+  cursor: pointer;
 }

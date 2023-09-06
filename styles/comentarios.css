@@ -1,0 +1,38 @@
+.formComments{
+    display: flex;
+    flex-direction: column;
+}
+
+.imgInputComments{
+    width: 50px;
+    border-radius: 50px;
+}
+
+.inputComments{
+    justify-content: end;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(158, 157, 157, 0.973);
+    padding: 10px;
+
+}
+
+.btnCommentContainer{
+    align-self: flex-end;
+    margin-top: 7px;
+}
+
+.btnSendComment{
+    background-color: #ff5e00;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 6px;
+    transition: 300ms ease;
+}
+
+.btnSendComment:hover{
+    transform: scale(1.05,1.05);
+    background-color: transparent;
+    color: #ff5e00;
+}

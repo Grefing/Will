@@ -101,3 +101,16 @@
   font-size: 20px;
 }
 
+.linkPerfil{
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  border: 2px solid #ff5e00;
+  transition: 300ms ease-out;
+}
+
+.linkPerfil:hover{
+ transform: scale(1.05, 1.05);
+ border: transparent;
+}
+

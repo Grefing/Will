@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   buscarTrailerPelicula,
@@ -14,16 +14,11 @@ import { AiFillHeart } from "react-icons/ai";
 import { BsStopwatchFill } from "react-icons/bs";
 import "/styles/detallePelicula.css";
 import Loader from "../components/Loader";
-import {
-  borrarComentario,
-} from "../helpers/queriesBack";
 import { Container } from "react-bootstrap";
 import CardPelicula from "./pelicula/CardPelicula";
 import CardReparto from "./pelicula/CardReparto";
 import Comentarios from "./pelicula/Comentarios";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { AiOutlineClose } from "react-icons/ai";
-import Swal from "sweetalert2";
 import Like from "../components/Like";
 import VerDespues from "../components/VerDespues";
 
@@ -41,6 +36,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
   const [paginador, setPaginador] = useState(0);
   const [cont, setCont] = useState(1);
   const [idComentario, setIdComentario] = useState("");
+  const containerRef = useRef();
   let { type, id } = useParams();
 
   const navegacion = useNavigate();
@@ -51,6 +47,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
 
   const fetchData = async () => {
     setIsLoading(true);
+    setTrailerPeli("");
     if (type === "films") {
       obtenerPelicula(id).then((res) => {
         setDetallePeli(res);
@@ -100,24 +97,14 @@ const DetallePelicula = ({ usuarioLogueado }) => {
     }
   };
 
-  const eliminarComentario = (idComentario) => {
-    borrarComentario(idComentario).then(() => {
-      setIdComentario(idComentario)
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Comentario eliminado",
-        showConfirmButton: false,
-        timer: 1000,
-      });
-    });
-  };
+
 
   useEffect(() => {
     fetchData();
     setPaginador(0);
     setCont(1);
-  }, [id]);
+    containerRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [id, type]);
 
   return (
     <>
@@ -173,6 +160,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
               <img
                 src={`https://image.tmdb.org/t/p/original${detallePeli.backdrop_path}`}
                 alt="imgDetallePeli"
+                ref={containerRef}
                 className="imgPeli img-fluid"
               />
               {type === "films" ? (
@@ -241,6 +229,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
               </div>
 
               <Container className="my-5">
+
                 <div>
                   <h2>Comentarios</h2>
                   <div className="recLine"></div>
@@ -252,50 +241,11 @@ const DetallePelicula = ({ usuarioLogueado }) => {
                     comentarios={comentarios}
                     setComentarios={setComentarios}
                     idComentario={idComentario}
+                    setIdComentario={setIdComentario}
+                    paginador={paginador}
                   ></Comentarios>
                 </div>
 
-                <div className="containerAllComments">
-                  {[...comentarios]
-                    .reverse()
-                    .slice(paginador, paginador + 5)
-                    .map((comentario) => (
-                      <div
-                        key={comentario._id}
-                        className="d-flex containerComentario"
-                      >
-                        <div className="d-flex flex-column">
-                          <img
-                            src="https://static.vecteezy.com/system/resources/previews/008/844/895/non_2x/user-icon-design-free-png.png"
-                            alt="imgUsuario"
-                            width={"50px"}
-                            className="align-self-center justify-content-center "
-                          />
-                          <p className="text-center align-self-center justify-content-center nombreComentario">
-                            {comentario.nombreUsuario}
-                          </p>
-                        </div>
-
-                        <div className="containerTexto">
-                            <p className="descripcion">
-                              {comentario.descripcion}
-                            </p>
-                        </div>
-
-                        {comentario.idUsuario === usuarioLogueado.id &&
-                        comentario.idPelicula === parseInt(id) ? (
-                          <AiOutlineClose
-                            className="deleteCross"
-                            onClick={() => (
-                              eliminarComentario(comentario._id)
-                            )}
-                          ></AiOutlineClose>
-                        ) : (
-                          <></>
-                        )}
-                      </div>
-                    ))}
-                </div>
 
                 <div className="paginadorComentarios">
                   {paginador !== 0 ? (

@@ -32,15 +32,19 @@ const Like = ({
   };
 
   useEffect(() => {
-    if (Object.keys(usuarioLogueado).length > 0) {
+    if (usuarioLogueado.nombreUsuario) {
       obtenerListaLikes().then((res) => {
         const filtrado = res.filter(
           (like) =>
             like.idUsuario === usuarioLogueado.id &&
             like.idPelicula === parseInt(id)
         );
+
         if (filtrado.length > 0) {
           setIdLike(filtrado[0]._id);
+        }else{
+          setColorLike('')
+          setIdLike('')
         }
       });
 
@@ -52,7 +56,7 @@ const Like = ({
         });
       }
     }
-  }, [idLike]);
+  }, [id, idLike]);
 
   return (
     <>

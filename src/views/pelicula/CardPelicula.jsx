@@ -14,8 +14,8 @@ const CardPelicula = ({ data }) => {
       >
         <Link className="card movie-card" to={`/detalles/${data.original_name === undefined? "films" : "series"}/${data.id}`}>
           <img
-            src={"https://image.tmdb.org/t/p/w342" + data.poster_path}
-            className="imgPeli img-fluid"
+            src={data.poster_path !== null? ('https://image.tmdb.org/t/p/w342' + data.poster_path) : ('https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png')}
+            className="img-fluid"
             alt="imagenPeli"
           />
           <div className="card-body">

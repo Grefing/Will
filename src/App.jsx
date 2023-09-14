@@ -18,10 +18,11 @@ import RutasUsuario from './routes/RutasUsuario';
 function App() {
   const usuarioLocalStorage = JSON.parse(localStorage.getItem('usuario')) || {}
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioLocalStorage)
+  const [render, setRender] = useState("")
 
   return (
     <BrowserRouter>
-        <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></Menu>
+        <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado} render={render}></Menu>
         <Routes>  
         <Route exact path="/" element={<Inicio></Inicio>}></Route>
         <Route exact path="/registro" element={<Registro setUsuarioLogueado={setUsuarioLogueado}></Registro>}></Route>
@@ -30,7 +31,7 @@ function App() {
         <Route exact path='/resultado-busqueda/:type/:result' element={<ResultadoBusqueda></ResultadoBusqueda>}></Route>
         <Route path='/user/*' element={
           <RutasProtegidas>
-            <RutasUsuario usuarioLogueado={usuarioLogueado}></RutasUsuario>
+            <RutasUsuario usuarioLogueado={usuarioLogueado} render={render} setRender={setRender}></RutasUsuario>
           </RutasProtegidas>
         }></Route>
         <Route exact path='*' element={<Eror404></Eror404>}></Route>

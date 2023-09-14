@@ -1,10 +1,10 @@
 .bannerContainer{
-    margin-top: 50px;
+    margin-top: 80px;
 }
 
 .banner{
     object-fit: cover;
-    height: 600px;
+    height:700px;
     width: 100%;
 }
 
@@ -38,7 +38,7 @@
 
 @media (max-width:500px){
     .banner{
-        height: 560px;
+        height: 400px;
     }
     .bannerTitle{
         font-size: 50px;

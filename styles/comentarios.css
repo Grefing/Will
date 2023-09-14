@@ -36,3 +36,64 @@
     background-color: transparent;
     color: #ff5e00;
 }
+
+.containerComentario{
+    margin: 15px 0;
+    display: flex;
+  }
+  
+  .containerTexto {
+    flex-grow: 1; 
+    border: 1px solid rgba(158, 157, 157, 0.973);
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px 5px;
+    word-wrap: break-word;
+    width:0%;
+    height: 100%;
+  }
+  
+  .imgAndUser{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .imgUsuario{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    align-self: center;
+  }
+  
+  .nombreComentario{
+    width: 80px;
+  }
+  
+  .descripcion{
+    margin: 5px 10px;
+  }
+  
+  .paginadorComentarios{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .moveComments{
+    align-self: center;
+    font-size: 30px;
+    color: #ff5e00;
+  }
+  
+  .moveComments:hover{
+    cursor: pointer;
+  }
+  
+  .deleteCross{
+    font-size: 30px;
+    color: red;
+    margin-top: 15px;
+  }
+  
+  .deleteCross:hover{
+    cursor: pointer;
+  }

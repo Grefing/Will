@@ -1,0 +1,18 @@
+.miPerfil{
+    margin-top: 5rem;
+}
+.imgFotoPerfil{
+    width: 40%;
+    margin-top: 4rem;
+    align-self: center;
+}
+
+.imgFotoPerfil:hover{
+    filter: blur(3px);
+    cursor: pointer;
+}
+
+.nombrePerfil{
+    margin-top: 1rem;
+    align-self: center;
+}

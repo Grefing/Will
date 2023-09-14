@@ -48,15 +48,29 @@ export const obtenerUsuario = async (idUsuario) => {
   try {
     const response = await axios.get(URL_usuario + `usuario/${idUsuario}`)
     const { data } = response;
+
     return {
       status: response.status,
-      id: data.id,
+      id: data._id,
       nombreUsuario: data.nombreUsuario,
+      fotoPerfil: data.fotoPerfil,
+      email: data.email,
     };
   } catch (e) {
     console.log(e);
   }
 };
+
+export const editarFotoUsuario = async (idUsuario, URL) =>{
+  try {
+    const {data} = await axios.put(URL_usuario + `usuario/${idUsuario}`, { nuevaFotoPerfil: URL })
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+
 // ?LIKES
 
 export const crearLike = async (idUsuario, idPelicula, tipo) => {

@@ -3,10 +3,10 @@
   padding: 0;
   overflow: hidden;
   display: flex;
-  align-items: center; /* Centrar verticalmente */
-  background-size: cover; /* Hace que la imagen de fondo cubra todo el contenedor */
-  background-position: center; /* Centrar la imagen de fondo */
-  background-repeat: no-repeat; /* Evitar la repetición de la imagen */
+  align-items: center;
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
   }
 
   .imgPeli{
@@ -343,6 +343,10 @@
 }
 
 @media (max-width: 400px ){
+  .imgPeli{
+    height: 250px;
+  }
+
   .title{
     margin-top: 10px;
     font-size: 40px;
@@ -362,59 +366,7 @@
 
    .goBackIcon{
     font-size: 40px;
-    margin-top: 10px;
+    margin-top: 15px;
    }
 
-}
-
-.containerComentario{
-  margin: 15px 0;
-  display: flex;
-}
-
-.containerTexto {
-  flex-grow: 1; 
-  border: 1px solid rgba(158, 157, 157, 0.973);
-  border-radius: 10px;
-  margin: 10px 5px;
-  word-wrap: break-word;
-  width: 0%;
-}
-
-.imgAndUser{
-  display: flex;
-  flex-direction: column;
-}
-
-.nombreComentario{
-  width: 80px;
-}
-
-.descripcion{
-  margin: 5px 10px;
-}
-
-.paginadorComentarios{
-  display: flex;
-  justify-content: center;
-}
-
-.moveComments{
-  align-self: center;
-  font-size: 30px;
-  color: #ff5e00;
-}
-
-.moveComments:hover{
-  cursor: pointer;
-}
-
-.deleteCross{
-  font-size: 30px;
-  color: red;
-  margin-top: 15px;
-}
-
-.deleteCross:hover{
-  cursor: pointer;
 }

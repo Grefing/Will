@@ -4,7 +4,7 @@ import {
   borrarLike,
   crearLike,
   obtenerLike,
-  obtenerListaLikes,
+  obtenerLikeId,
 } from "../helpers/queriesBack";
 
 const Like = ({
@@ -33,10 +33,9 @@ const Like = ({
 
   useEffect(() => {
     if (usuarioLogueado.nombreUsuario) {
-      obtenerListaLikes().then((res) => {
+      obtenerLike(usuarioLogueado.id).then((res) => {
         const filtrado = res.filter(
           (like) =>
-            like.idUsuario === usuarioLogueado.id &&
             like.idPelicula === parseInt(id)
         );
 
@@ -49,7 +48,7 @@ const Like = ({
       });
 
       if (idLike !== "") {
-        obtenerLike(idLike).then((res) => {
+        obtenerLikeId(idLike).then((res) => {
           if (res.status === 200) {
             setColorLike("#ff5e00");
           }

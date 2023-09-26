@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Card, Container, Row } from "react-bootstrap";
 import CardFavoritos from "./pelicula/CardFavoritos";
 import "/styles/favoritos.css";
-import { obtenerListaVerDespues } from "../helpers/queriesBack";
+import { obtenerVerDespues } from "../helpers/queriesBack";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Loader from "../components/Loader";
 
@@ -14,9 +14,9 @@ const VerDespues = ({ usuarioLogueado }) => {
 
   const showFilms = () => {
     setIsLoading(true);
-    obtenerListaVerDespues().then((res) => {
+    obtenerVerDespues(usuarioLogueado.id).then((res) => {
       const filtrado = res.filter(
-        (item) => item.idUsuario === usuarioLogueado.id && item.tipo === "films"
+        (item) => item.tipo === "films"
       );
       setData(filtrado);
     setIsLoading(false);
@@ -25,10 +25,10 @@ const VerDespues = ({ usuarioLogueado }) => {
 
   const showSeries = () => {
     setIsLoading(true);
-    obtenerListaVerDespues().then((res) => {
+    obtenerVerDespues(usuarioLogueado.id).then((res) => {
       const filtrado = res.filter(
         (item) =>
-          item.idUsuario === usuarioLogueado.id && item.tipo === "series"
+          item.tipo === "series"
       );
       setData(filtrado);
     setIsLoading(false);
@@ -37,22 +37,16 @@ const VerDespues = ({ usuarioLogueado }) => {
 
   const showAll = () => {
     setIsLoading(true);
-    obtenerListaVerDespues().then((res) => {
-      const filtrado = res.filter(
-        (item) => item.idUsuario === usuarioLogueado.id
-      );
-      setData(filtrado);
+    obtenerVerDespues(usuarioLogueado.id).then((res) => {
+      setData(res);
     setIsLoading(false);
     });
   };
 
   useEffect(() => {
     setIsLoading(true);
-    obtenerListaVerDespues().then((res) => {
-      const filtrado = res.filter(
-        (item) => item.idUsuario === usuarioLogueado.id
-      );
-      setData(filtrado);
+    obtenerVerDespues(usuarioLogueado.id).then((res) => {
+      setData(res);
     setIsLoading(false);
     });
   }, [usuarioLogueado]);

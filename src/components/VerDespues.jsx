@@ -2,8 +2,8 @@ import { BsStopwatchFill } from "react-icons/bs";
 import {
   borrarVerDespues,
   crearVerDespues,
-  obtenerListaVerDespues,
   obtenerVerDespues,
+  obtenerVerDespuesId,
 } from "../helpers/queriesBack";
 import { useEffect } from "react";
 
@@ -32,10 +32,9 @@ const VerDespues = ({
 
   useEffect(() => {
     if (usuarioLogueado.nombreUsuario) {
-      obtenerListaVerDespues().then((res) => {
+      obtenerVerDespues(usuarioLogueado.id).then((res) => {
         const filtrado = res.filter(
           (verDespues) =>
-            verDespues.idUsuario === usuarioLogueado.id &&
             verDespues.idPelicula === parseInt(id)
         );
         if (filtrado.length > 0) {
@@ -47,7 +46,7 @@ const VerDespues = ({
       });
 
       if (idSeeLater !== "") {
-        obtenerVerDespues(idSeeLater).then((res) => {
+        obtenerVerDespuesId(idSeeLater).then((res) => {
           if (res.status === 200) {
             setColorClock("#ff5e00");
           }

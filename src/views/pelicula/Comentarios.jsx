@@ -28,27 +28,17 @@ const Comentarios = ({
   } = useForm();
   const { id } = useParams();
   const [render, setRender] = useState("");
-  const [usuario, setUsuario] = useState("")
   const navegacion = useNavigate();
-
 
   const onSubmit = (info) => {
     if (usuarioLogueado.nombreUsuario) {
-      // const comment = {
-      //   id,
-      //   usuarioLogueadoId: usuarioLogueado.id,
-      //   usuarioLogueadoNombre: usuarioLogueado.nombreUsuario,
-      //   comentario: info.comentario
-      // }
-
       crearComentario(
-     id,
-     usuarioLogueado.id,
-     usuarioLogueado.nombreUsuario,
-     info.comentario,
+        id,
+        usuarioLogueado.id,
+        info.comentario,
       ).then((res) => {
         setRender(res);
-        // setComentarios(prev => [...prev, comment])
+
       });
       reset();
     } else {
@@ -70,22 +60,15 @@ const Comentarios = ({
   };
 
   useEffect(() => {
-    obtenerListaComentarios().then((res) => {
-      const filtrado = res.filter(
-        (comentario) => comentario.idPelicula === parseInt(id)
-      );
-      setComentarios(filtrado);
+    obtenerListaComentarios(id).then((res) => {
+      setComentarios(res);
     });
-
-    obtenerUsuario(usuarioLogueado.id).then((res) =>{
-      setUsuario(res);
-    })
   }, [render, idComentario]);
+
 
   return (
     <>
       <div style={{ width: "100%" }} className="align-self-center">
-        
         <div>
           <form onSubmit={handleSubmit(onSubmit)} className="formComments">
             <div className="inputCommentContainer">
@@ -93,7 +76,6 @@ const Comentarios = ({
                 type="text"
                 className="inputComments"
                 placeholder="Comentarios..."
-                maxLength={80}
                 {...register("comentario")}
               />
             </div>
@@ -113,28 +95,30 @@ const Comentarios = ({
               <div key={comentario._id} className="containerComentario">
                 <div className="d-flex flex-column">
                   <img
-                    // src={usuario.fotoPerfil}
-                    src="https://static.vecteezy.com/system/resources/previews/008/844/895/non_2x/user-icon-design-free-png.png"
+                    src={comentario.usuario.fotoPerfil}
                     alt="imgUsuario"
                     className="imgUsuario"
                   />
                   <p className="text-center align-self-center justify-content-center nombreComentario">
-                    {comentario.nombreUsuario}
+                    {comentario.usuario.nombreUsuario}
                   </p>
                 </div>
 
+                
+
                 <div className="containerTexto">
+                  <h6>{comentario.hora}</h6>
                   <p className="descripcion">{comentario.descripcion}</p>
                 </div>
+                
+               
 
-                {comentario.idUsuario === usuarioLogueado.id &&
-                comentario.idPelicula === parseInt(id) ? (
+                {comentario.usuario._id === usuarioLogueado.id &&
+                comentario.idPelicula === parseInt(id) && (
                   <AiOutlineClose
                     className="deleteCross"
                     onClick={() => eliminarComentario(comentario._id)}
                   ></AiOutlineClose>
-                ) : (
-                  <></>
                 )}
               </div>
             ))}

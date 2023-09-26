@@ -4,6 +4,7 @@ import { obtenerUsuario } from "../helpers/queriesBack";
 import "/styles/perfil.css";
 import Loader from "../components/Loader";
 import VentanaModal from "../components/VentanaModal";
+import { BsPencilSquare } from "react-icons/bs";
 
 const Perfil = ({ usuarioLogueado, setRender, render }) => {
   const [usuario, setUsuario] = useState({});
@@ -12,6 +13,8 @@ const Perfil = ({ usuarioLogueado, setRender, render }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+console.log(usuarioLogueado);
 
   useEffect(() => {
     setIsLoading(true);
@@ -32,13 +35,19 @@ const Perfil = ({ usuarioLogueado, setRender, render }) => {
           </div>
 
           <div className="d-flex justify-content-center flex-column">
-            <img
-              src={usuario.fotoPerfil}
-              className="imgFotoPerfil rounded-circle "
-              alt=""
-              onClick={handleShow}
-            />
-            <VentanaModal show={show} setShow={setShow} handleClose={handleClose} usuario={usuario} setRender={setRender} ></VentanaModal>
+              <img
+                src={usuario.fotoPerfil}
+                className="rounded-circle imgProfile"
+                alt=""
+                onClick={handleShow}
+              />   
+            <VentanaModal
+              show={show}
+              setShow={setShow}
+              handleClose={handleClose}
+              usuario={usuario}
+              setRender={setRender}
+            ></VentanaModal>
             <h3 className="nombrePerfil">{usuario.nombreUsuario}</h3>
           </div>
 

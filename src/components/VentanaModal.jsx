@@ -3,7 +3,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { set, useForm } from "react-hook-form";
 import { AiOutlineClose } from "react-icons/ai";
-import { editarFotoUsuario } from "../helpers/queriesBack";
+import { editarFotoComentarios, editarFotoUsuario, obtenerListaComentarios } from "../helpers/queriesBack";
+
 
 const VentanaModal = ({ show, setShow, handleClose, usuario, setRender }) => {
   const {
@@ -14,11 +15,11 @@ const VentanaModal = ({ show, setShow, handleClose, usuario, setRender }) => {
   } = useForm();
 
   const onSubmit = (URL) => {
-    editarFotoUsuario(usuario.id, URL.fotoPerfil).then(() =>{
-        setValue("fotoPerfil", "")
-        setShow(false)
-        setRender(URL)
-    } )
+    editarFotoUsuario(usuario.id, URL.fotoPerfil).then(() => {
+      setValue("fotoPerfil", "");
+      setShow(false);
+      setRender(URL);
+    });
   };
 
   return (
@@ -33,8 +34,8 @@ const VentanaModal = ({ show, setShow, handleClose, usuario, setRender }) => {
           Cambiar foto de pefil
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Modal.Body>
           <div className="d-flex">
             <input
               type="text"
@@ -48,18 +49,23 @@ const VentanaModal = ({ show, setShow, handleClose, usuario, setRender }) => {
                 },
               })}
             />
-            <AiOutlineClose className="align-self-center" style={{fontSize: "30px"}} onClick={() => setValue("fotoPerfil", "")}></AiOutlineClose>
+            <AiOutlineClose
+              className="align-self-center"
+              style={{ fontSize: "30px" }}
+              onClick={() => setValue("fotoPerfil", "")}
+            ></AiOutlineClose>
           </div>
           <Form.Text className="text-danger">
             {errors.fotoPerfil?.message}
           </Form.Text>
-        </form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={handleClose} variant="danger">
-          Close
-        </Button>
-      </Modal.Footer>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button type="submit">Guardar</Button>
+          <Button onClick={handleClose} variant="danger">
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </form>
     </Modal>
   );
 };

@@ -1,7 +1,7 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "/styles/menu.css";
-import {AiOutlineClockCircle} from "react-icons/ai"
+import {AiOutlineClockCircle, AiOutlineHeart} from "react-icons/ai"
 import { useEffect, useState } from "react";
 import { obtenerUsuario } from "../helpers/queriesBack";
 
@@ -51,12 +51,12 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, render }) => {
                 </>
               ) : (
                 <>
-                <NavLink to={"/user/favoritos"} className={"nav-item nav-link"}>Favoritos</NavLink>
+                <NavLink to={"/user/favoritos"} className={"nav-item nav-link"}><AiOutlineHeart></AiOutlineHeart></NavLink>
                 <NavLink to={"/user/seeLater"} className={"nav-item nav-link"}><AiOutlineClockCircle className="seeLaterIcon"></AiOutlineClockCircle></NavLink>
                 <Button onClick={logOut} className="btnLogOut">
                   Logout
                 </Button>
-                <NavLink to={'/user/perfil'} > 
+                <NavLink to={'/user/perfil'} className={'perfilImg'}> 
                   <img src={usuario.fotoPerfil} className="linkPerfil img-fluid" alt="imgUsuario" />
                 </NavLink>
                 </>

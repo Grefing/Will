@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { obtenerListaLikes } from "../helpers/queriesBack";
+import { obtenerLike } from "../helpers/queriesBack";
 import { Card, Container, Row } from "react-bootstrap";
 import CardFavoritos from "./pelicula/CardFavoritos";
 import "/styles/favoritos.css";
@@ -14,9 +14,9 @@ const Favoritos = ({ usuarioLogueado }) => {
 
   const showFilms = () => {
     setIsLoading(true);
-    obtenerListaLikes().then((res) => {
+    obtenerLike(usuarioLogueado.id).then((res) => {
       const filtrar = res.filter(
-        (like) => like.idUsuario === usuarioLogueado.id && like.tipo === "films"
+        (like) => like.tipo === "films"
       );
       setData(filtrar);
       setIsLoading(false);
@@ -27,10 +27,10 @@ const Favoritos = ({ usuarioLogueado }) => {
 
   const showSeries = () => {
     setIsLoading(true);
-    obtenerListaLikes().then((res) => {
+    obtenerLike(usuarioLogueado.id).then((res) => {
       const filtrar = res.filter(
         (like) =>
-          like.idUsuario === usuarioLogueado.id && like.tipo === "series"
+          like.tipo === "series"
       );
       setData(filtrar);
       setIsLoading(false);
@@ -41,11 +41,8 @@ const Favoritos = ({ usuarioLogueado }) => {
 
   const showAll = () => {
     setIsLoading(true);
-    obtenerListaLikes().then((res) => {
-      const filtrar = res.filter(
-        (like) => like.idUsuario === usuarioLogueado.id
-      );
-      setData(filtrar);
+    obtenerLike(usuarioLogueado.id).then((res) => {   
+      setData(res);
       setIsLoading(false);
     });
     setCont(1);
@@ -54,11 +51,8 @@ const Favoritos = ({ usuarioLogueado }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    obtenerListaLikes().then((res) => {
-      const filtrar = res.filter(
-        (like) => like.idUsuario === usuarioLogueado.id
-      );
-      setData(filtrar);
+    obtenerLike(usuarioLogueado.id).then((res) => {   
+      setData(res);
       setIsLoading(false);
     });
   }, [usuarioLogueado]);

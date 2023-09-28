@@ -93,13 +93,14 @@ const Comentarios = ({
             .slice(paginador, paginador + 5)
             .map((comentario) => (
               <div key={comentario._id} className="containerComentario">
-                <div className="d-flex flex-column">
+
+                <div className="d-flex flex-column my-2">
                   <img
                     src={comentario.usuario.fotoPerfil}
                     alt="imgUsuario"
                     className="imgUsuario"
                   />
-                  <p className="text-center align-self-center justify-content-center nombreComentario">
+                  <p className="text-center nombreComentario">
                     {comentario.usuario.nombreUsuario}
                   </p>
                 </div>

@@ -31,7 +31,7 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, render }) => {
       <Navbar expanded={expanded} variant="dark" expand="lg" className="navBar">
         <Container>
           <Navbar.Brand as={Link} to={"/"}>
-            <img src="/src/assets/logo.png" className="logo" alt="" />
+            {/* <img src="/src/assets/logo.png" className="logo" alt="" /> */}
           </Navbar.Brand>
 
           <Navbar.Toggle

@@ -49,6 +49,7 @@
     width: 100%;
     z-index: 999;
     background-color: rgb(26, 21, 21);
+    height: 9vh;
 }
 
 .navContainer{

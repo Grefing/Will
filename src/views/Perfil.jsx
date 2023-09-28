@@ -14,8 +14,6 @@ const Perfil = ({ usuarioLogueado, setRender, render }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-console.log(usuarioLogueado);
-
   useEffect(() => {
     setIsLoading(true);
     obtenerUsuario(usuarioLogueado.id).then((res) => {

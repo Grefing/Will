@@ -193,7 +193,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
               </div>
             </Container>
 
-            {trailerPeli !== "" ? (
+            {trailerPeli !== "" && (
               <div className="videoContainer my-5 d-flex flex-column">
                 <h2 className="trailerTitle">Trailer:</h2>
                 <div className="trailerLine"></div>
@@ -204,8 +204,6 @@ const DetallePelicula = ({ usuarioLogueado }) => {
                   allowFullScreen
                 ></iframe>
               </div>
-            ) : (
-              <></>
             )}
 
             <Container className="recommendationsContainer">
@@ -217,7 +215,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
               <div className="recommendations d-flex">
                 {recomendaciones.length > 0 ? (
                   recomendaciones.map((data) => (
-                    <CardPelicula key={data.id} data={data}></CardPelicula>
+                    <CardPelicula key={data.id} data={data} columns={2}></CardPelicula>
                   ))
                 ) : (
                   <h5 className="noRec">

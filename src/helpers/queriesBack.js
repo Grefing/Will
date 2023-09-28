@@ -108,7 +108,6 @@ export const borrarLike = async (id) => {
 export const obtenerLike = async (idUsuario) => {
   try {
     const { data } = await axios.get(URL_like + idUsuario);
-
     return data;
   } catch (e) {
     console.log(e);

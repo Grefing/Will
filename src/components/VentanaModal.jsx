@@ -1,9 +1,8 @@
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { set, useForm } from "react-hook-form";
-import { AiOutlineClose } from "react-icons/ai";
-import { editarFotoComentarios, editarFotoUsuario, obtenerListaComentarios } from "../helpers/queriesBack";
+import { useForm } from "react-hook-form";
+import { editarFotoUsuario } from "../helpers/queriesBack";
 
 
 const VentanaModal = ({ show, setShow, handleClose, usuario, setRender }) => {
@@ -14,7 +13,16 @@ const VentanaModal = ({ show, setShow, handleClose, usuario, setRender }) => {
     setValue,
   } = useForm();
 
+  // const [selectedImage, setSelectedImage] = useState("");
+
   const onSubmit = (URL) => {
+    // if (selectedImage !== '') {
+    //   editarFotoUsuario(usuario.id, selectedImage).then(() => {
+    //     setValue("fotoPerfil", "");
+    //     setShow(false);
+    //     setRender(selectedImage);
+    //   });
+    // }
     editarFotoUsuario(usuario.id, URL.fotoPerfil).then(() => {
       setValue("fotoPerfil", "");
       setShow(false);
@@ -29,38 +37,57 @@ const VentanaModal = ({ show, setShow, handleClose, usuario, setRender }) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton onClick={handleClose}>
-        <Modal.Title id="contained-modal-title-vcenter">
+      <Modal.Header onClick={handleClose} className="d-flex flex-column">
+        <Modal.Title
+          id="contained-modal-title-vcenter"
+          className="align-self-start"
+        >
           Cambiar foto de pefil
         </Modal.Title>
+
+        <div className="modalLine align-self-start"></div>
       </Modal.Header>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <Modal.Body>
           <div className="d-flex">
             <input
               type="text"
               placeholder="Ingrese la URL de la imagen"
-              className="form-control"
+              className={errors.fotoPerfil ? "input-error form-control" : "form-control"}
               {...register("fotoPerfil", {
-                required: "Debe ingresar una URl",
+                required: "Debe ingresar una URL",
                 pattern: {
                   value: /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i,
                   message: "Por favor, ingrese una URL de imagen válida.",
                 },
               })}
             />
-            <AiOutlineClose
-              className="align-self-center"
-              style={{ fontSize: "30px" }}
-              onClick={() => setValue("fotoPerfil", "")}
-            ></AiOutlineClose>
+
+
+            {/*         
+            <input
+              type="file"
+              className="form-control"
+              accept=".gif, .jpg, .jpeg, .png, .webp, .bmp"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const imageUrl = URL.createObjectURL(file);
+                  setSelectedImage(imageUrl);
+                }
+              }}
+            />
+       */}
           </div>
           <Form.Text className="text-danger">
             {errors.fotoPerfil?.message}
           </Form.Text>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit">Guardar</Button>
+          <Button type="submit" className="saveBtn">
+            Guardar
+          </Button>
           <Button onClick={handleClose} variant="danger">
             Cerrar
           </Button>

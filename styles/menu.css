@@ -49,7 +49,6 @@
     width: 100%;
     z-index: 999;
     background-color: rgb(26, 21, 21);
-    height: 80px;
 }
 
 .navContainer{
@@ -91,6 +90,12 @@
 }
 
 @media (max-width: 991px ){
+  .navContainer.navbar-nav{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+
   .nav-item{
     width: 200px;
     align-self: center;

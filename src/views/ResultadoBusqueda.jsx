@@ -77,8 +77,8 @@ const ResultadoBusqueda = () => {
           setData(res.data);
           setValue("peliBuscada", "");
           containerRef.current.scrollIntoView({ behavior: "smooth" });
-          setIsLoading(false);
         });
+        setIsLoading(false);
       } else if (type === "series") {
         obtenerSeries(cont).then((res) => {
           setData(res.data);

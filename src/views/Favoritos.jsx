@@ -96,26 +96,22 @@ const Favoritos = ({ usuarioLogueado }) => {
           )}
 
           <div className="d-flex justify-content-center">
-            {paginador !== 0 ? (
+            {paginador !== 0 && (
               <IoIosArrowBack
                 className="moveComments"
                 onClick={() => (
                   setPaginador(paginador - 20), setCont(cont - 1)
                 )}
               ></IoIosArrowBack>
-            ) : (
-              <></>
             )}
-            {data.length > 20 ? <h1>{cont}</h1> : <></>}
-            {data.slice(paginador + 20, paginador + 40).length > 0 ? (
+            {data.length > 20 && <h1>{cont}</h1>}
+            {data.slice(paginador + 20, paginador + 40).length > 0 && (
               <IoIosArrowForward
                 className="moveComments"
                 onClick={() => (
                   setPaginador(paginador + 20), setCont(cont + 1)
                 )}
               ></IoIosArrowForward>
-            ) : (
-              <></>
             )}
           </div>
         </Container>

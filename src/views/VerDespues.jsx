@@ -12,6 +12,7 @@ const VerDespues = ({ usuarioLogueado }) => {
   const [cont, setCont] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
+  
   const showFilms = () => {
     setIsLoading(true);
     obtenerVerDespues(usuarioLogueado.id).then((res) => {

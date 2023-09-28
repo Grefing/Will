@@ -194,8 +194,8 @@ const DetallePelicula = ({ usuarioLogueado }) => {
             </Container>
 
             {trailerPeli !== "" && (
-              <div className="videoContainer my-5 d-flex flex-column">
-                <h2 className="trailerTitle">Trailer:</h2>
+              <Container className="videoContainer my-5 d-flex flex-column">
+                <h2>Trailer:</h2>
                 <div className="trailerLine"></div>
                 <iframe
                   src={trailerPeli}
@@ -203,7 +203,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
                   className="trailerVideo align-self-center"
                   allowFullScreen
                 ></iframe>
-              </div>
+              </Container>
             )}
 
             <Container className="recommendationsContainer">
@@ -229,7 +229,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
               <Container className="my-5">
 
                 <div>
-                  <h2>Comentarios</h2>
+                  <h2>Comentarios:</h2>
                   <div className="recLine"></div>
                 </div>
 

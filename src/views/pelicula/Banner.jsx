@@ -22,17 +22,11 @@ const Banner = ({ data, type }) => {
             alt=""
           />
           <Carousel.Caption className="btnBannerContainer">
-            {
-              type === "films"? (
-                <>
-                <h3 className="bannerTitle">{banner.original_title}</h3>
-                </>
-              ) : (
-                <>
-                <h3 className="bannerTitle">{banner.original_name}</h3>
-                </>
-              )
-            }
+            {type === "films" ? (
+              <h3 className="bannerTitle">{banner.original_title}</h3>
+            ) : (
+              <h3 className="bannerTitle">{banner.original_name}</h3>
+            )}
             <Button
               className="btnBanner d-flex"
               onClick={() => handleBtn(banner.id)}

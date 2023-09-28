@@ -1,5 +1,5 @@
 .imgContainer {
-  margin-top: 80px;
+  margin-top: 50px;
   padding: 0;
   overflow: hidden;
   display: flex;
@@ -65,7 +65,7 @@
   .trailerLine{
     align-self: center;
     height: 4px;
-    width: 80%;
+    width: 100%;
     background-color: #ff5e00;
     border-radius: 10px;
   }

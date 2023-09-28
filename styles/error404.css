@@ -21,7 +21,7 @@
   }
   
   .goBackBtn:hover {
-    background-color: rgba(32, 31, 31, 0.781);
+    background-color: transparent;
     color: #ff5e00; 
     transform: scale(1.05, 1.05);
   }

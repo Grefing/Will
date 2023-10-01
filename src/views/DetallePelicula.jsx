@@ -123,6 +123,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
                   setIdLike={setIdLike}
                   idLike={idLike}
                   setColorLike={setColorLike}
+                  detallePeli={detallePeli}
                 ></Like>
               ) : (
                 <AiFillHeart
@@ -141,6 +142,7 @@ const DetallePelicula = ({ usuarioLogueado }) => {
                     idSeeLater={idSeeLater}
                     setIdSeeLater={setIdSeeLater}
                     setColorClock={setColorClock}
+                    detallePeli={detallePeli}
                   ></VerDespues>
                 </div>
               ) : (

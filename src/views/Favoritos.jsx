@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { obtenerLike } from "../helpers/queriesBack";
-import { Card, Container, Row } from "react-bootstrap";
+import { Card, Container, Form, Row } from "react-bootstrap";
 import CardFavoritos from "./pelicula/CardFavoritos";
 import "/styles/favoritos.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -8,16 +8,17 @@ import Loader from "../components/Loader";
 
 const Favoritos = ({ usuarioLogueado }) => {
   const [data, setData] = useState([]);
+  const [originalData, setOriginalData] = useState([]);
   const [paginador, setPaginador] = useState(0);
   const [cont, setCont] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
+ 
   const showFilms = () => {
     setIsLoading(true);
     obtenerLike(usuarioLogueado.id).then((res) => {
-      const filtrar = res.filter(
-        (like) => like.tipo === "films"
-      );
+      const filtrar = res.filter((like) => like.tipo === "films");
+      setOriginalData(filtrar);
       setData(filtrar);
       setIsLoading(false);
     });
@@ -28,10 +29,8 @@ const Favoritos = ({ usuarioLogueado }) => {
   const showSeries = () => {
     setIsLoading(true);
     obtenerLike(usuarioLogueado.id).then((res) => {
-      const filtrar = res.filter(
-        (like) =>
-          like.tipo === "series"
-      );
+      const filtrar = res.filter((like) => like.tipo === "series");
+      setOriginalData(filtrar);
       setData(filtrar);
       setIsLoading(false);
     });
@@ -41,7 +40,8 @@ const Favoritos = ({ usuarioLogueado }) => {
 
   const showAll = () => {
     setIsLoading(true);
-    obtenerLike(usuarioLogueado.id).then((res) => {   
+    obtenerLike(usuarioLogueado.id).then((res) => {
+      setOriginalData(res);
       setData(res);
       setIsLoading(false);
     });
@@ -49,9 +49,23 @@ const Favoritos = ({ usuarioLogueado }) => {
     setPaginador(0);
   };
 
+  const handleInputChange = (evento) => {
+    const minus = evento.toLowerCase();
+    if (minus === "") {
+      setData(originalData);
+    } else {
+      const buscar = originalData.filter((dato) =>
+        dato.nombrePelicula.toLowerCase().includes(minus)
+      );
+      setData(buscar);
+    }
+  };
+
+
   useEffect(() => {
     setIsLoading(true);
-    obtenerLike(usuarioLogueado.id).then((res) => {   
+    obtenerLike(usuarioLogueado.id).then((res) => {
+      setOriginalData(res); 
       setData(res);
       setIsLoading(false);
     });
@@ -67,15 +81,21 @@ const Favoritos = ({ usuarioLogueado }) => {
           <div className="titleLine"></div>
 
           <div className="btnContainer">
-            <button onClick={showFilms} className="btnFavoritos">
-              Mostrar peliculas
-            </button>
-            <button onClick={showSeries} className="btnFavoritos">
-              Mostrar series
-            </button>
-            <button onClick={showAll} className="btnFavoritos">
-              Mostrar todo
-            </button>
+            <div>
+              <button onClick={showFilms} className="btnFavoritos">
+                Mostrar peliculas
+              </button>
+              <button onClick={showSeries} className="btnFavoritos">
+                Mostrar series
+              </button>
+              <button onClick={showAll} className="btnFavoritos">
+                Mostrar todo
+              </button>
+            </div>
+
+            <div className="containerInputSearch">
+              <Form.Control type="text" placeholder="Buscar..." className="searchInputFavoritos" onChange={(e) => handleInputChange(e.target.value)}/>
+            </div>
           </div>
 
           {data.length === 0 ? (

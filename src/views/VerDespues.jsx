@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Container, Row } from "react-bootstrap";
+import { Card, Container, Form, Row } from "react-bootstrap";
 import CardFavoritos from "./pelicula/CardFavoritos";
 import "/styles/favoritos.css";
 import { obtenerVerDespues } from "../helpers/queriesBack";
@@ -8,47 +8,59 @@ import Loader from "../components/Loader";
 
 const VerDespues = ({ usuarioLogueado }) => {
   const [data, setData] = useState([]);
+  const [originalData, setOriginalData] = useState([]);
   const [paginador, setPaginador] = useState(0);
   const [cont, setCont] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
-  
   const showFilms = () => {
     setIsLoading(true);
     obtenerVerDespues(usuarioLogueado.id).then((res) => {
-      const filtrado = res.filter(
-        (item) => item.tipo === "films"
-      );
+      const filtrado = res.filter((item) => item.tipo === "films");
+      setOriginalData(filtrado)
       setData(filtrado);
-    setIsLoading(false);
+      setIsLoading(false);
     });
   };
 
   const showSeries = () => {
     setIsLoading(true);
     obtenerVerDespues(usuarioLogueado.id).then((res) => {
-      const filtrado = res.filter(
-        (item) =>
-          item.tipo === "series"
-      );
+      const filtrado = res.filter((item) => item.tipo === "series");
+      setOriginalData(filtrado);
       setData(filtrado);
-    setIsLoading(false);
+      setIsLoading(false);
     });
   };
 
   const showAll = () => {
     setIsLoading(true);
     obtenerVerDespues(usuarioLogueado.id).then((res) => {
+      setOriginalData(res);
       setData(res);
-    setIsLoading(false);
+      setIsLoading(false);
     });
   };
+
+  const handleInputChange = (evento) => {
+    const minus = evento.toLowerCase();
+    if (minus === "") {
+      setData(originalData);
+    } else {
+      const buscar = originalData.filter((dato) =>
+        dato.nombrePelicula.toLowerCase().includes(minus)
+      );
+      setData(buscar);
+    }
+  };
+
 
   useEffect(() => {
     setIsLoading(true);
     obtenerVerDespues(usuarioLogueado.id).then((res) => {
+      setOriginalData(res)
       setData(res);
-    setIsLoading(false);
+      setIsLoading(false);
     });
   }, [usuarioLogueado]);
 
@@ -62,16 +74,28 @@ const VerDespues = ({ usuarioLogueado }) => {
           <div className="titleLine"></div>
 
           <div className="btnContainer">
-            <button onClick={showFilms} className="btnFavoritos">
-              Mostrar peliculas
-            </button>
-            <button onClick={showSeries} className="btnFavoritos">
-              Mostrar series
-            </button>
-            <button onClick={showAll} className="btnFavoritos">
-              Mostrar todo
-            </button>
+            <div>
+              <button onClick={showFilms} className="btnFavoritos">
+                Mostrar peliculas
+              </button>
+              <button onClick={showSeries} className="btnFavoritos">
+                Mostrar series
+              </button>
+              <button onClick={showAll} className="btnFavoritos">
+                Mostrar todo
+              </button>
+            </div>
+
+            <div className="align-self-center">
+              <Form.Control
+                type="text"
+                placeholder="Buscar..."
+                className="searchInputFavoritos"
+                onChange={(e) => handleInputChange(e.target.value)}
+              />
+            </div>
           </div>
+
           {data.length === 0 ? (
             <h2 className="titleEmpty">
               {" "}

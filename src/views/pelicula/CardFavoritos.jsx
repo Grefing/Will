@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 const CardFavoritos = ({ idPeliOSerie, type}) => {
   const [data, setData] = useState({});
 
+
   useEffect(() => {
     if (type === "films") {
       obtenerPelicula(idPeliOSerie).then((res) => {
@@ -22,6 +23,7 @@ const CardFavoritos = ({ idPeliOSerie, type}) => {
   return (
     <>
       <Col
+        xs={6}
         sm={6}
         md={4}
         lg={3}
@@ -29,7 +31,7 @@ const CardFavoritos = ({ idPeliOSerie, type}) => {
         className="mb-3 d-flex justify-content-center"
       >
         <Link
-          className="card movie-card"
+          className="card movie-card-favoritos"
           to={`/detalles/${
             data.original_name === undefined ? "films" : "series"
           }/${data.id}`}

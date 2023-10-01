@@ -30,6 +30,7 @@ const VentanaModal = ({ show, setShow, handleClose, usuario, setRender }) => {
     });
   };
 
+  
   return (
     <Modal
       show={show}
@@ -88,7 +89,7 @@ const VentanaModal = ({ show, setShow, handleClose, usuario, setRender }) => {
           <Button type="submit" className="saveBtn">
             Guardar
           </Button>
-          <Button onClick={handleClose} variant="danger">
+          <Button onClick={handleClose} variant="danger" className="closeBtn">
             Cerrar
           </Button>
         </Modal.Footer>

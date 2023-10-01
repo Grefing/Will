@@ -73,11 +73,11 @@ export const editarFotoUsuario = async (idUsuario, URL) => {
 
 // ?LIKES
 
-export const crearLike = async (idUsuario, idPelicula, tipo) => {
+export const crearLike = async (idUsuario, idPelicula, tipo, nombrePelicula) => {
   try {
     const response = await axios.post(
       URL_like + "nuevoLike",
-      { idUsuario, idPelicula, tipo },
+      { idUsuario, idPelicula, tipo, nombrePelicula },
       {
         headers: {
           "Content-Type": "application/json",
@@ -125,11 +125,11 @@ export const obtenerLikeId = async (id) => {
 };
 
 // ?VER DESPUES
-export const crearVerDespues = async (idUsuario, idPelicula, tipo) => {
+export const crearVerDespues = async (idUsuario, idPelicula, tipo, nombrePelicula) => {
   try {
     const response = await axios.post(
       URL_verDespues + "nuevoSeeLater",
-      { idUsuario, idPelicula, tipo },
+      { idUsuario, idPelicula, tipo, nombrePelicula },
       {
         headers: {
           "Content-Type": "application/json",
@@ -185,7 +185,7 @@ export const crearComentario = async (idPelicula, idUsuario, descripcion) => {
   try {
     const response = await axios.post(
       URL_comentario + "nuevoComentario",
-      { idPelicula, descripcion, usuario: idUsuario },
+      { idPelicula, descripcion, usuario: idUsuario},
       {
         headers: {
           "Content-Type": "application/json",

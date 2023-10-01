@@ -6,6 +6,7 @@ const CardPelicula = ({ data, columns }) => {
   return (
     <>
       <Col
+        xs={6}
         sm={6}
         md={4}
         lg={3}

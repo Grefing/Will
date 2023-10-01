@@ -21,16 +21,16 @@ const Footer = () => {
           </div>
 
           <div className="align-self-center">
-            <Link to={"https://www.instagram.com/tomi_waj/"}>
+            <Link target="_blank" to={"https://www.instagram.com/tomi_waj/"}>
               <AiOutlineInstagram className="igLogo logo"></AiOutlineInstagram>
             </Link>
-            <Link to={"https://www.facebook.com/tomas.wajnerman"}>
+            <Link target="_blank" to={"https://www.facebook.com/tomas.wajnerman"}>
               <AiOutlineFacebook className="fcLogo logo"></AiOutlineFacebook>
             </Link>
-            <Link to={"https://twitter.com/TomasitoWaj"}>
+            <Link target="_blank" to={"https://twitter.com/TomasitoWaj"}>
               <AiOutlineTwitter className="twLogo logo"></AiOutlineTwitter>
             </Link>
-            <Link to={"https://github.com/Grefing"}>
+            <Link target="_blank" to={"https://github.com/Grefing"}>
               <AiOutlineGithub className="ghLogo logo"></AiOutlineGithub>
             </Link>
           </div>

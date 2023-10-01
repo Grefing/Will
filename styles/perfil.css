@@ -36,3 +36,13 @@
     background-color: transparent;
     color: #ff5e00;
 }
+
+.closeBtn{
+    transition: 300ms ease;
+    border: none;
+}
+
+.closeBtn:hover{
+    color: red;
+    background-color: transparent;
+}

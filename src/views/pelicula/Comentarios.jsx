@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "/styles/comentarios.css";
 import Swal from "sweetalert2";
+import Puntuacion from "../../components/Puntuacion";
 
 const Comentarios = ({
   usuarioLogueado,
@@ -29,7 +30,7 @@ const Comentarios = ({
   const { id } = useParams();
   const [render, setRender] = useState("");
   const navegacion = useNavigate();
-
+ 
   const onSubmit = (info) => {
     if (usuarioLogueado.nombreUsuario) {
       crearComentario(
@@ -105,14 +106,11 @@ const Comentarios = ({
                   </p>
                 </div>
 
-                
-
                 <div className="containerTexto">
-                  <h6>{comentario.hora}</h6>
+                  <h6>{comentario.hora.substring(0, 10)}</h6>
                   <p className="descripcion">{comentario.descripcion}</p>
                 </div>
                 
-               
 
                 {comentario.usuario._id === usuarioLogueado.id &&
                 comentario.idPelicula === parseInt(id) && (
@@ -121,9 +119,12 @@ const Comentarios = ({
                     onClick={() => eliminarComentario(comentario._id)}
                   ></AiOutlineClose>
                 )}
+
               </div>
             ))}
         </div>
+
+        <Puntuacion></Puntuacion>
       </div>
     </>
   );

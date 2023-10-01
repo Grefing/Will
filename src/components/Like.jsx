@@ -6,6 +6,7 @@ import {
   obtenerLike,
   obtenerLikeId,
 } from "../helpers/queriesBack";
+import {useState} from 'react'
 
 const Like = ({
   colorLike,
@@ -15,11 +16,14 @@ const Like = ({
   setIdLike,
   idLike,
   setColorLike,
+  detallePeli
 }) => {
-  
+    
+  const [title, setTitle] = useState();
+
   const colorChangerLike = (pintar) => {
     if (colorLike === "") {
-      crearLike(usuarioLogueado.id, id, type).then((res) => {
+      crearLike(usuarioLogueado.id, id, type, title).then((res) => {
         setIdLike(res.id);
         setColorLike(pintar);
       });
@@ -45,6 +49,7 @@ const Like = ({
           setColorLike('')
           setIdLike('')
         }
+
       });
 
       if (idLike !== "") {
@@ -54,6 +59,12 @@ const Like = ({
           }
         });
       }
+    }
+
+    if (detallePeli.original_title !== undefined ) {
+      setTitle(detallePeli.original_title);
+    }else{
+      setTitle(detallePeli.original_name);
     }
   }, [id, idLike]);
 

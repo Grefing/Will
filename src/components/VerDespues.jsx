@@ -5,7 +5,7 @@ import {
   obtenerVerDespues,
   obtenerVerDespuesId,
 } from "../helpers/queriesBack";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const VerDespues = ({
   colorClock,
@@ -15,10 +15,15 @@ const VerDespues = ({
   setIdSeeLater,
   setColorClock,
   idSeeLater,
+  detallePeli
 }) => {
+
+  const [title, setTitle] = useState("");
+
+
   const colorChangerClock = (pintar) => {
     if (colorClock === "") {
-      crearVerDespues(usuarioLogueado.id, id, type).then((res) => {
+      crearVerDespues(usuarioLogueado.id, id, type, title).then((res) => {
         setIdSeeLater(res.id);
         setColorClock(pintar);
       });
@@ -52,6 +57,12 @@ const VerDespues = ({
           }
         });
       }
+    }
+
+    if (detallePeli.original_title !== undefined ) {
+      setTitle(detallePeli.original_title);
+    }else{
+      setTitle(detallePeli.original_name);
     }
   }, [id, idSeeLater]);
 

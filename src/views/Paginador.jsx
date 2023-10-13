@@ -6,20 +6,19 @@ const Paginador = ({ cont, setCont, data }) => {
   return (
     <>
       <div className="d-flex containerPaginador">
-        {cont === 1 ? (
-          <></>
-        ) : (
+        {cont !== 1 && (
           <IoIosArrowBack
             className="align-self-center mx-2 paginador"
             onClick={() => setCont(cont - 1)}
           />
         )}
         <h1>{cont}</h1>
+        {data.length > 0 && (
           <IoIosArrowForward
-            className={`align-self-center mx-2 paginador ${data.length > 0 ? ("") : ("d-none")}`}
+            className={`align-self-center mx-2 paginador`}
             onClick={() => setCont(cont + 1)}
           />
-  
+        )}
       </div>
     </>
   );

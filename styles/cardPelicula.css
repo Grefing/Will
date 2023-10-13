@@ -1,5 +1,6 @@
+
 .movie-card {
-  height: 300px;
+  height: 299px;
   width: 200px;
   position: relative;
   overflow: hidden;
@@ -7,11 +8,12 @@
   transition: 0.3s;
   margin-top: 30px;
   border-radius: 20px;
+  border: none;
 }
 
 @media (max-width: 450px) {
   .movie-card{
-    height: 240px;
+    height: 230px;
     width: 180px;
   }
 }

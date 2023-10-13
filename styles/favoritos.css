@@ -68,9 +68,8 @@ height: 300px;
     border-radius: 15px;
     padding: 10px;
 }
-
-
-
+  
+  
 @media (max-width: 450px) {
     .movie-card-favoritos{
       height: 240px;

@@ -74,9 +74,9 @@ const Inicio = () => {
           </div>
           <form className="d-flex searchForm" onSubmit={handleSubmit(onSubmit)}>
             <div className="mx-3 d-flex">
-              <Button type="submit" className="inputBtn">
+              <button type="submit" className="inputBtn">
                 <BsSearch className="align-self-center lupa"></BsSearch>
-              </Button>
+              </button>
             </div>
             <input
               type="text"

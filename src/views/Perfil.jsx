@@ -36,7 +36,7 @@ const Perfil = ({ usuarioLogueado, setRender, render }) => {
               <img
                 src={usuario.fotoPerfil}
                 className="rounded-circle imgProfile"
-                alt=""
+                alt="profilePic"
                 onClick={handleShow}
               />   
             <VentanaModal

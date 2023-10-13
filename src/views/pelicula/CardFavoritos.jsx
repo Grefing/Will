@@ -4,19 +4,18 @@ import "/styles/cardPelicula.css";
 import { obtenerPelicula, obtenerSerie } from "../../helpers/queries";
 import { useState, useEffect } from "react";
 
-const CardFavoritos = ({ idPeliOSerie, type}) => {
+const CardFavoritos = ({ idPeliOSerie, type }) => {
   const [data, setData] = useState({});
-
 
   useEffect(() => {
     if (type === "films") {
       obtenerPelicula(idPeliOSerie).then((res) => {
         setData(res);
       });
-    }else{
+    } else {
       obtenerSerie(idPeliOSerie).then((res) => {
-          setData(res);
-      })
+        setData(res);
+      });
     }
   }, [idPeliOSerie]);
 
@@ -31,14 +30,18 @@ const CardFavoritos = ({ idPeliOSerie, type}) => {
         className="mb-3 d-flex justify-content-center"
       >
         <Link
-          className="card movie-card-favoritos"
+          className="card movie-card"
           to={`/detalles/${
             data.original_name === undefined ? "films" : "series"
           }/${data.id}`}
         >
           <img
-            src={"https://image.tmdb.org/t/p/w342" + data.poster_path}
-            className="card-img-top"
+            src={
+              data.poster_path !== null
+                ? "https://image.tmdb.org/t/p/w342" + data.poster_path
+                : "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png"
+            }
+            className="img-fluid imgPeli"
             alt="imagenPeli"
           />
           <div className="card-body">

@@ -1,6 +1,7 @@
 .containerResBus{
-    margin-top: 70px;
+    margin-top: 80px;
 }
+
 
 .containerResult{
       display: flex;
@@ -67,7 +68,7 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-bottom: 10px;
+
     }
 
     .margen{
@@ -83,11 +84,12 @@
 @media (max-width: 990px){
     .btnAllMovies{
         width: 200px;
-        margin: 10px 0;
+        margin: 5px 0;
     }
     
     .containerInput{
         align-self: center;
+        margin-top: 10px;
     }
 }
 

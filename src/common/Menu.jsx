@@ -5,7 +5,8 @@ import { AiOutlineClockCircle, AiOutlineHeart } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { obtenerUsuario } from "../helpers/queriesBack";
 
-const Menu = ({ usuarioLogueado, setUsuarioLogueado, render }) => {
+
+const Menu = ({ usuarioLogueado, setUsuarioLogueado, render, theme,  setTheme }) => {
   const [usuario, setUsuario] = useState({});
   const navegacion = useNavigate();
   const [expanded, setExpanded] = useState(false);
@@ -91,6 +92,7 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado, render }) => {
             </Nav>
           </Navbar.Collapse>
         </Container>
+        
       </Navbar>
     </>
   );

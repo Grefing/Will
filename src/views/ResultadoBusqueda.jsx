@@ -98,7 +98,7 @@ const ResultadoBusqueda = () => {
   }, [cont, result]);
 
   return (
-    <section className="mainSection containerResBus ">
+    <section className="mainSection containerResBus">
       {isLoading ? (
         <Loader></Loader>
       ) : (
@@ -142,11 +142,12 @@ const ResultadoBusqueda = () => {
                 onSubmit={handleSubmit(onSubmit)}
               >
                 {/* <div className="mx-3 d-flex">
-              <button type="submit" className="inputBtnResults">
-                <BsSearch className="align-self-center lupa"></BsSearch>
-              </button>
-            </div> */}
-                <div className="containerInput">
+                  <button type="submit" className="inputBtnResults">
+                    <BsSearch className="align-self-center lupa"></BsSearch>
+                  </button>
+                </div> */}
+                
+                <div className="containerInput text-center">
                   <input
                     type="text"
                     className="searchInput"

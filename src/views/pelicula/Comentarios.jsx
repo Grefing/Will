@@ -98,7 +98,7 @@ const Comentarios = ({
                 <div className="d-flex flex-column my-2">
                   <img
                     src={comentario.usuario.fotoPerfil}
-                    alt="imgUsuario"
+                    alt="https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png"
                     className="imgUsuario"
                   />
                   <p className="text-center nombreComentario">
@@ -124,7 +124,8 @@ const Comentarios = ({
             ))}
         </div>
 
-        <Puntuacion></Puntuacion>
+        {/* <Puntuacion></Puntuacion> */}
+
       </div>
     </>
   );

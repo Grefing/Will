@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import Swal from "sweetalert2";
 import "/styles/registroLogin.css";
 
-const Login = ({ setUsuarioLogueado }) => {
+const Login = ({ setUsuarioLogueado}) => {
   const {
     register,
     handleSubmit,
@@ -38,7 +38,7 @@ const Login = ({ setUsuarioLogueado }) => {
   
 
   return (
-    <section className="mt-5 mainSection">
+    <section className="mt-5 mainSection" >
       <div className="row registrationContainer" ref={containerRef}>
         <div className="col-10 col-sm-8 col-md-6 col-xl-3 containerRegistroForm">
           <h3 className="titleRegister">Iniciar sesión</h3>

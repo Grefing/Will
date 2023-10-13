@@ -100,10 +100,10 @@ const DetallePelicula = ({ usuarioLogueado }) => {
 
 
   useEffect(() => {
+    containerRef.current.scrollIntoView({ behavior: "smooth" });
     fetchData();
     setPaginador(0);
     setCont(1);
-    containerRef.current.scrollIntoView({ behavior: "smooth" });
   }, [id, type]);
 
   return (
